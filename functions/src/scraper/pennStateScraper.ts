@@ -1,12 +1,12 @@
 import puppeteer, { Page } from 'puppeteer';
 import { stringify } from 'csv-stringify/sync';
+import * as fs from 'fs';
 
-// In pennStateScraper.ts, update your interface:
 interface LoginResult {
   success: boolean;
   message?: string;
-  csvData?: string;  // The CSV data if successfully retrieved
-  userId?: string;   // The user ID for storing transactions
+  csvData?: string;
+  userEmail?: string;
 }
 
 interface Transaction {
@@ -18,13 +18,43 @@ interface Transaction {
   amount: string;
 }
 
-// Function to extract data from the table
+async function waitForTableLoad(page: Page) {
+  await page.waitForSelector('#ctl00_MainContent_ResultRadGrid', {
+    visible: true,
+    timeout: 30000
+  });
+  
+  // Wait for loading indicator to disappear (if exists)
+  try {
+    await page.waitForSelector('#ctl00_MainContent_ResultRadGrid_ctl00 .rgLoading', {
+      hidden: true,
+      timeout: 5000
+    });
+  } catch (error) {
+    // Loading indicator might not exist, which is fine
+  }
+
+  // Additional wait for table content
+  await page.waitForSelector('#ctl00_MainContent_ResultRadGrid tbody tr', {
+    visible: true,
+    timeout: 30000
+  });
+
+  // Give a small buffer for any dynamic content
+  await page.waitForTimeout(1000);
+}
+
 async function extractTableData(page: Page): Promise<Transaction[]> {
   console.log('Extracting data from the current table page...');
+  
+  // Wait for table load before extraction
+  await waitForTableLoad(page);
+  
   const transactions = await page.evaluate(() => {
     const rows = Array.from(
       document.querySelectorAll('#ctl00_MainContent_ResultRadGrid tbody tr')
     );
+    
     return rows.map(row => {
       const cells = Array.from(row.getElementsByTagName('td'));
       return {
@@ -37,62 +67,97 @@ async function extractTableData(page: Page): Promise<Transaction[]> {
       };
     });
   });
+  
   console.log(`Extracted ${transactions.length} transactions from this page.`);
   return transactions;
 }
 
-// Function to get total page count from the table's pagination
 async function getTablePageCount(page: Page): Promise<number> {
   console.log('Retrieving total number of table pages...');
+  await waitForTableLoad(page);
+  
   const pageCount = await page.evaluate(() => {
     const pagerInfo = document.querySelector('.rgPagerCell .rgInfoPart');
-    if (pagerInfo) {
-      const match = pagerInfo.textContent?.match(/Page \d+ of (\d+)/);
-      return match ? parseInt(match[1]) : 1;
-    }
-    return 1;
+    if (!pagerInfo?.textContent) return 1;
+    const match = pagerInfo.textContent.match(/Page \d+ of (\d+)/);
+    return match ? parseInt(match[1]) : 1;
   });
+  
   console.log(`Total table pages found: ${pageCount}`);
   return pageCount;
 }
 
-// Function to scrape all transaction history from the paginated table
 async function scrapeTransactionHistory(page: Page): Promise<Transaction[]> {
   console.log('Starting to scrape transaction history from the table...');
+  await waitForTableLoad(page);
+  
   let allTransactions: Transaction[] = [];
   const totalPages = await getTablePageCount(page);
 
-  for (let currentPage = 1; currentPage <= totalPages; currentPage++) {
+  let currentPage = 1;
+  while (currentPage <= totalPages) {
     console.log(`Scraping table page ${currentPage} of ${totalPages}...`);
 
-    // Extract data from the current table page
+    // Make sure current page is fully loaded before extraction
+    await waitForTableLoad(page);
     const pageTransactions = await extractTableData(page);
     allTransactions = allTransactions.concat(pageTransactions);
 
-    // Navigate to the next page if not on the last page
     if (currentPage < totalPages) {
-      // Construct the selector for the next page link
-      const nextPageLinkSelector = `a[title="Go to page ${currentPage + 1}"]`;
-      console.log(`Navigating to table page ${currentPage + 1}...`);
-      
-      // Wait for the next page link to be clickable
-      await page.waitForSelector(nextPageLinkSelector, { visible: true });
-      
-      // Click the next page link and wait for the table to reload
-      await Promise.all([
-        page.waitForNavigation({ waitUntil: 'networkidle0' }),
-        page.click(nextPageLinkSelector)
-      ]);
+      // Handle pagination
+      try {
+        if (currentPage < 10) {
+          await page.click(`#ctl00_MainContent_ResultRadGrid_ctl00 > tfoot > tr > td > table > tbody > tr > td > div.rgWrap.rgNumPart > a:nth-child(${currentPage + 1})`);
+        } else {
+          const paginationItems = await page.$$('.rgWrap.rgNumPart > a');
+          const pageNumbers = await Promise.all(
+            paginationItems.map(item => 
+              page.evaluate(el => ({ 
+                text: el.textContent?.trim() || '', 
+                isActive: el.classList.contains('rgCurrentPage')
+              }), item)
+            )
+          );
 
-      // Wait for the table to reload
-      await page.waitForSelector('#ctl00_MainContent_ResultRadGrid tbody tr');
-      await page.waitForTimeout(1000);
+          const currentSet = pageNumbers.findIndex(p => p.isActive);
+          const lastVisibleNumber = pageNumbers[pageNumbers.length - 2]?.text;
+
+          if (currentPage === parseInt(lastVisibleNumber)) {
+            await page.click(`#ctl00_MainContent_ResultRadGrid_ctl00 > tfoot > tr > td > table > tbody > tr > td > div.rgWrap.rgNumPart > a:last-child`);
+          } else {
+            const nextPageInSet = currentSet + 1;
+            await page.click(`#ctl00_MainContent_ResultRadGrid_ctl00 > tfoot > tr > td > table > tbody > tr > td > div.rgWrap.rgNumPart > a:nth-child(${nextPageInSet + 1})`);
+          }
+        }
+
+        // Wait for navigation to complete and table to reload
+        await waitForTableLoad(page);
+        
+        // Additional validation that page changed
+        const newPageNumber = await page.evaluate(() => {
+          const activePage = document.querySelector('.rgWrap.rgNumPart .rgCurrentPage');
+          return activePage ? parseInt(activePage.textContent || '0') : 0;
+        });
+
+        if (newPageNumber !== currentPage + 1) {
+          throw new Error('Page navigation failed');
+        }
+
+      } catch (error) {
+        console.error(`Error navigating to page ${currentPage + 1}:`, error);
+        // Retry navigation once
+        await page.waitForTimeout(2000);
+        continue;
+      }
     }
+
+    currentPage++;
   }
 
   console.log(`Finished scraping. Total transactions collected: ${allTransactions.length}`);
   return allTransactions;
 }
+
 
 // Function to save transactions to CSV
 async function saveToCSV(transactions: Transaction[]): Promise<string> {
@@ -164,16 +229,16 @@ export const initiatePSULogin = async (
 
     // Email input
     await page.waitForSelector('#i0116', { visible: true });
-    await page.type('#i0116', psuEmail, { delay: 100 });
+    await page.type('#i0116', psuEmail, { delay: 10 });
     await Promise.all([
       page.waitForNavigation(),
       page.click('#idSIButton9')
     ]);
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(600);
 
     // Password input
     await page.waitForSelector('#i0118', { visible: true });
-    await page.type('#i0118', password, { delay: 100 });
+    await page.type('#i0118', password, { delay: 10 });
     await Promise.all([
       page.waitForNavigation(),
       page.click('#idSIButton9')
@@ -184,13 +249,13 @@ export const initiatePSULogin = async (
     await page.click('a#signInAnotherWay');
     
     // Select verification code option
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(600);
     await page.waitForSelector('div[data-value="PhoneAppOTP"]');
     await page.click('div[data-value="PhoneAppOTP"]');
 
     // Enter verification code
     await page.waitForSelector('#idTxtBx_SAOTCC_OTC');
-    await page.type('#idTxtBx_SAOTCC_OTC', verificationCode, { delay: 100 });
+    await page.type('#idTxtBx_SAOTCC_OTC', verificationCode, { delay: 10 });
     
     // Submit verification
     await Promise.all([
@@ -218,7 +283,7 @@ export const initiatePSULogin = async (
     });
     await page.type('#ctl00_MainContent_BeginRadDateTimePicker_dateInput', fromDate);
     await page.keyboard.press('Enter');
-    await page.waitForTimeout(1000); // Wait a bit for the date to register
+    await page.waitForTimeout(800); // Wait a bit for the date to register
 
     // Handle To Date
     console.log('Entering to date:', toDate);
@@ -231,7 +296,7 @@ export const initiatePSULogin = async (
     });
     await page.type('#ctl00_MainContent_EndRadDateTimePicker_dateInput', toDate);
     await page.keyboard.press('Enter');
-    await page.waitForTimeout(1500); // Wait a bit for the date to register
+    await page.waitForTimeout(800); // Wait a bit for the date to register
 
 
     // Click Continue button
@@ -239,7 +304,7 @@ export const initiatePSULogin = async (
     console.log('Clicking Continue button...');
     await page.click('#MainContent_ContinueButton');
 
-    await page.waitForTimeout(2000); // Wait for the page to load
+    await page.waitForTimeout(1000); // Wait for the page to load
     // Wait for the transaction table to load
     console.log('Waiting for transaction table to load...');
     await page.waitForSelector('#ctl00_MainContent_ResultRadGrid', {
@@ -252,8 +317,24 @@ export const initiatePSULogin = async (
     const transactions = await scrapeTransactionHistory(page);
     console.log(`Successfully scraped ${transactions.length} transactions.`);
 
+    // Save transactions to a JSON file
+    try {
+      fs.writeFileSync('transactions.json', JSON.stringify(transactions, null, 2));
+      console.log('Transactions saved to transactions.json');
+    } catch (error) {
+      console.error('Error saving transactions to JSON file:', error);
+    }
+
     // Save to CSV
     const csvContent = await saveToCSV(transactions);
+
+    // Write CSV content to a file
+    try {
+      fs.writeFileSync('transactions.csv', csvContent);
+      console.log('CSV data saved to transactions.csv');
+    } catch (error) {
+      console.error('Error saving CSV data to file:', error);
+    }
 
     // Close browser
     await browser.close();

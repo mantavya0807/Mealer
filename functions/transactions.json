@@ -1,0 +1,3138 @@
+[
+  {
+    "datetime": "12345678910...\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t  Page 1 of 16, items 1 to 15 of 228.",
+    "accountName": "",
+    "cardNumber": "",
+    "location": "",
+    "transactionType": "",
+    "amount": ""
+  },
+  {
+    "datetime": "5/2/2024 9:24 AM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "External Client External Client",
+    "transactionType": "Credit",
+    "amount": "0.50 USD"
+  },
+  {
+    "datetime": "5/2/2024 8:24 AM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "101E Computer Building WEPA Print Station 16",
+    "transactionType": "Debit",
+    "amount": "(0.28) USD"
+  },
+  {
+    "datetime": "5/2/2024 8:22 AM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "101E Computer Building WEPA Print Station 16",
+    "transactionType": "Debit",
+    "amount": "(0.14) USD"
+  },
+  {
+    "datetime": "2/10/2024 4:07 PM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market North -UP Market North 2",
+    "transactionType": "Debit",
+    "amount": "(3.59) USD"
+  },
+  {
+    "datetime": "1/31/2024 2:30 PM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "101E Computer Building WEPA Print Station 5",
+    "transactionType": "Debit",
+    "amount": "(0.56) USD"
+  },
+  {
+    "datetime": "1/31/2024 1:44 AM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "External Client External Client",
+    "transactionType": "Credit",
+    "amount": "3.00 USD"
+  },
+  {
+    "datetime": "1/24/2024 1:20 PM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "101E Computer Building WEPA Print Station 31",
+    "transactionType": "Debit",
+    "amount": "(0.64) USD"
+  },
+  {
+    "datetime": "9/13/2023 2:02 PM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "External Client External Client",
+    "transactionType": "Credit",
+    "amount": "2.00 USD"
+  },
+  {
+    "datetime": "9/13/2023 12:05 PM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "External Client External Client",
+    "transactionType": "Credit",
+    "amount": "0.10 USD"
+  },
+  {
+    "datetime": "9/13/2023 12:01 PM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "External Client External Client",
+    "transactionType": "Credit",
+    "amount": "1.00 USD"
+  },
+  {
+    "datetime": "9/13/2023 11:06 AM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "101E Computer Building WEPA Print Station 15",
+    "transactionType": "Debit",
+    "amount": "(1.05) USD"
+  },
+  {
+    "datetime": "9/11/2023 5:35 PM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "101E Computer Building WEPA Print Station 43",
+    "transactionType": "Debit",
+    "amount": "(0.16) USD"
+  },
+  {
+    "datetime": "9/11/2023 5:20 PM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "External Client External Client",
+    "transactionType": "Credit",
+    "amount": "0.16 USD"
+  },
+  {
+    "datetime": "9/7/2023 5:23 PM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "101E Computer Building WEPA Print Station 43",
+    "transactionType": "Debit",
+    "amount": "(0.16) USD"
+  },
+  {
+    "datetime": "9/7/2023 5:23 PM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "External Client External Client",
+    "transactionType": "Credit",
+    "amount": "0.16 USD"
+  },
+  {
+    "datetime": "12345678910...\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t  Page 2 of 16, items 16 to 30 of 228.",
+    "accountName": "",
+    "cardNumber": "",
+    "location": "",
+    "transactionType": "",
+    "amount": ""
+  },
+  {
+    "datetime": "5/6/2023 9:15 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(5.58) USD"
+  },
+  {
+    "datetime": "5/6/2023 9:15 AM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(0.37) USD"
+  },
+  {
+    "datetime": "5/6/2023 8:26 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(8.77) USD"
+  },
+  {
+    "datetime": "5/5/2023 5:03 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Bluespoon Market -UP Warnock Bluespoon, Terminal 2",
+    "transactionType": "Debit",
+    "amount": "(1.59) USD"
+  },
+  {
+    "datetime": "5/4/2023 11:54 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(1.69) USD"
+  },
+  {
+    "datetime": "5/4/2023 11:19 PM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "Caldwell Gregory Kiosoft API C&G Kiosoft API",
+    "transactionType": "Debit",
+    "amount": "(1.50) USD"
+  },
+  {
+    "datetime": "5/4/2023 10:35 PM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "Caldwell Gregory Kiosoft API C&G Kiosoft API",
+    "transactionType": "Debit",
+    "amount": "(1.50) USD"
+  },
+  {
+    "datetime": "5/4/2023 10:35 PM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "External Client External Client",
+    "transactionType": "Credit",
+    "amount": "3.00 USD"
+  },
+  {
+    "datetime": "5/4/2023 12:44 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Starbucks Pattee Library -UP Pattee Library, Term 3",
+    "transactionType": "Debit",
+    "amount": "(3.65) USD"
+  },
+  {
+    "datetime": "5/4/2023 7:29 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "5/4/2023 7:05 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.90) USD"
+  },
+  {
+    "datetime": "5/3/2023 5:27 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Starbucks Pattee Library -UP Pattee Library, Term 3",
+    "transactionType": "Debit",
+    "amount": "(3.65) USD"
+  },
+  {
+    "datetime": "5/2/2023 1:16 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(5.38) USD"
+  },
+  {
+    "datetime": "5/1/2023 11:57 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(1.99) USD"
+  },
+  {
+    "datetime": "5/1/2023 9:40 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Flipps -UP Findlay Flipps Tacit Online",
+    "transactionType": "Debit",
+    "amount": "(2.59) USD"
+  },
+  {
+    "datetime": "12345678910...\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t  Page 2 of 16, items 16 to 30 of 228.",
+    "accountName": "",
+    "cardNumber": "",
+    "location": "",
+    "transactionType": "",
+    "amount": ""
+  },
+  {
+    "datetime": "5/6/2023 9:15 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(5.58) USD"
+  },
+  {
+    "datetime": "5/6/2023 9:15 AM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(0.37) USD"
+  },
+  {
+    "datetime": "5/6/2023 8:26 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(8.77) USD"
+  },
+  {
+    "datetime": "5/5/2023 5:03 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Bluespoon Market -UP Warnock Bluespoon, Terminal 2",
+    "transactionType": "Debit",
+    "amount": "(1.59) USD"
+  },
+  {
+    "datetime": "5/4/2023 11:54 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(1.69) USD"
+  },
+  {
+    "datetime": "5/4/2023 11:19 PM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "Caldwell Gregory Kiosoft API C&G Kiosoft API",
+    "transactionType": "Debit",
+    "amount": "(1.50) USD"
+  },
+  {
+    "datetime": "5/4/2023 10:35 PM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "Caldwell Gregory Kiosoft API C&G Kiosoft API",
+    "transactionType": "Debit",
+    "amount": "(1.50) USD"
+  },
+  {
+    "datetime": "5/4/2023 10:35 PM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "External Client External Client",
+    "transactionType": "Credit",
+    "amount": "3.00 USD"
+  },
+  {
+    "datetime": "5/4/2023 12:44 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Starbucks Pattee Library -UP Pattee Library, Term 3",
+    "transactionType": "Debit",
+    "amount": "(3.65) USD"
+  },
+  {
+    "datetime": "5/4/2023 7:29 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "5/4/2023 7:05 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.90) USD"
+  },
+  {
+    "datetime": "5/3/2023 5:27 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Starbucks Pattee Library -UP Pattee Library, Term 3",
+    "transactionType": "Debit",
+    "amount": "(3.65) USD"
+  },
+  {
+    "datetime": "5/2/2023 1:16 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(5.38) USD"
+  },
+  {
+    "datetime": "5/1/2023 11:57 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(1.99) USD"
+  },
+  {
+    "datetime": "5/1/2023 9:40 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Flipps -UP Findlay Flipps Tacit Online",
+    "transactionType": "Debit",
+    "amount": "(2.59) USD"
+  },
+  {
+    "datetime": "12345678910...\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t  Page 3 of 16, items 31 to 45 of 228.",
+    "accountName": "",
+    "cardNumber": "",
+    "location": "",
+    "transactionType": "",
+    "amount": ""
+  },
+  {
+    "datetime": "5/1/2023 6:14 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Starbucks Pattee Library -UP Pattee Library, Term 1",
+    "transactionType": "Debit",
+    "amount": "(3.65) USD"
+  },
+  {
+    "datetime": "5/1/2023 7:19 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.90) USD"
+  },
+  {
+    "datetime": "4/30/2023 10:25 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(9.29) USD"
+  },
+  {
+    "datetime": "4/30/2023 7:21 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Deli Salad -UP Findlay Deli Salad : POS 1",
+    "transactionType": "Debit",
+    "amount": "(1.08) USD"
+  },
+  {
+    "datetime": "4/30/2023 5:08 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.59) USD"
+  },
+  {
+    "datetime": "4/30/2023 12:31 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(5.40) USD"
+  },
+  {
+    "datetime": "4/29/2023 11:53 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 2",
+    "transactionType": "Debit",
+    "amount": "(1.09) USD"
+  },
+  {
+    "datetime": "4/29/2023 11:53 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(2.49) USD"
+  },
+  {
+    "datetime": "4/28/2023 11:17 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(6.99) USD"
+  },
+  {
+    "datetime": "4/28/2023 5:22 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(1.89) USD"
+  },
+  {
+    "datetime": "4/28/2023 7:16 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.90) USD"
+  },
+  {
+    "datetime": "4/27/2023 11:50 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(4.18) USD"
+  },
+  {
+    "datetime": "4/27/2023 8:46 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Flipps -UP Findlay Flipps Tacit Online",
+    "transactionType": "Debit",
+    "amount": "(2.59) USD"
+  },
+  {
+    "datetime": "4/27/2023 6:19 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(5.40) USD"
+  },
+  {
+    "datetime": "4/27/2023 6:19 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(5.40) USD"
+  },
+  {
+    "datetime": "12345678910...\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t  Page 3 of 16, items 31 to 45 of 228.",
+    "accountName": "",
+    "cardNumber": "",
+    "location": "",
+    "transactionType": "",
+    "amount": ""
+  },
+  {
+    "datetime": "5/1/2023 6:14 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Starbucks Pattee Library -UP Pattee Library, Term 1",
+    "transactionType": "Debit",
+    "amount": "(3.65) USD"
+  },
+  {
+    "datetime": "5/1/2023 7:19 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.90) USD"
+  },
+  {
+    "datetime": "4/30/2023 10:25 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(9.29) USD"
+  },
+  {
+    "datetime": "4/30/2023 7:21 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Deli Salad -UP Findlay Deli Salad : POS 1",
+    "transactionType": "Debit",
+    "amount": "(1.08) USD"
+  },
+  {
+    "datetime": "4/30/2023 5:08 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.59) USD"
+  },
+  {
+    "datetime": "4/30/2023 12:31 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(5.40) USD"
+  },
+  {
+    "datetime": "4/29/2023 11:53 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 2",
+    "transactionType": "Debit",
+    "amount": "(1.09) USD"
+  },
+  {
+    "datetime": "4/29/2023 11:53 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(2.49) USD"
+  },
+  {
+    "datetime": "4/28/2023 11:17 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(6.99) USD"
+  },
+  {
+    "datetime": "4/28/2023 5:22 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(1.89) USD"
+  },
+  {
+    "datetime": "4/28/2023 7:16 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.90) USD"
+  },
+  {
+    "datetime": "4/27/2023 11:50 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(4.18) USD"
+  },
+  {
+    "datetime": "4/27/2023 8:46 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Flipps -UP Findlay Flipps Tacit Online",
+    "transactionType": "Debit",
+    "amount": "(2.59) USD"
+  },
+  {
+    "datetime": "4/27/2023 6:19 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(5.40) USD"
+  },
+  {
+    "datetime": "4/27/2023 6:19 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(5.40) USD"
+  },
+  {
+    "datetime": "12345678910...\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t  Page 4 of 16, items 46 to 60 of 228.",
+    "accountName": "",
+    "cardNumber": "",
+    "location": "",
+    "transactionType": "",
+    "amount": ""
+  },
+  {
+    "datetime": "4/27/2023 4:42 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Deli Salad -UP Findlay Deli Salad : POS 1",
+    "transactionType": "Debit",
+    "amount": "(0.70) USD"
+  },
+  {
+    "datetime": "4/27/2023 2:07 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 1",
+    "transactionType": "Debit",
+    "amount": "(5.88) USD"
+  },
+  {
+    "datetime": "4/27/2023 10:28 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.90) USD"
+  },
+  {
+    "datetime": "4/26/2023 11:45 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(5.17) USD"
+  },
+  {
+    "datetime": "4/26/2023 5:29 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "4/26/2023 10:59 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 5",
+    "transactionType": "Debit",
+    "amount": "(5.49) USD"
+  },
+  {
+    "datetime": "4/25/2023 8:57 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 2",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "4/25/2023 10:13 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 7",
+    "transactionType": "Debit",
+    "amount": "(5.88) USD"
+  },
+  {
+    "datetime": "4/25/2023 7:22 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.90) USD"
+  },
+  {
+    "datetime": "4/24/2023 10:01 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 4",
+    "transactionType": "Debit",
+    "amount": "(4.77) USD"
+  },
+  {
+    "datetime": "4/24/2023 9:16 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(1.99) USD"
+  },
+  {
+    "datetime": "4/24/2023 3:29 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Burger King -UP HUB-Burger King, Terminal 1",
+    "transactionType": "Debit",
+    "amount": "(9.29) USD"
+  },
+  {
+    "datetime": "4/23/2023 5:58 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Flipps -UP Findlay Flipps Tacit Online",
+    "transactionType": "Debit",
+    "amount": "(2.59) USD"
+  },
+  {
+    "datetime": "4/23/2023 4:01 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Bluespoon Market -UP Warnock Bluespoon, Terminal 2",
+    "transactionType": "Debit",
+    "amount": "(1.59) USD"
+  },
+  {
+    "datetime": "4/22/2023 10:45 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(1.99) USD"
+  },
+  {
+    "datetime": "12345678910...\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t  Page 4 of 16, items 46 to 60 of 228.",
+    "accountName": "",
+    "cardNumber": "",
+    "location": "",
+    "transactionType": "",
+    "amount": ""
+  },
+  {
+    "datetime": "4/27/2023 4:42 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Deli Salad -UP Findlay Deli Salad : POS 1",
+    "transactionType": "Debit",
+    "amount": "(0.70) USD"
+  },
+  {
+    "datetime": "4/27/2023 2:07 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 1",
+    "transactionType": "Debit",
+    "amount": "(5.88) USD"
+  },
+  {
+    "datetime": "4/27/2023 10:28 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.90) USD"
+  },
+  {
+    "datetime": "4/26/2023 11:45 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(5.17) USD"
+  },
+  {
+    "datetime": "4/26/2023 5:29 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "4/26/2023 10:59 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 5",
+    "transactionType": "Debit",
+    "amount": "(5.49) USD"
+  },
+  {
+    "datetime": "4/25/2023 8:57 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 2",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "4/25/2023 10:13 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 7",
+    "transactionType": "Debit",
+    "amount": "(5.88) USD"
+  },
+  {
+    "datetime": "4/25/2023 7:22 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.90) USD"
+  },
+  {
+    "datetime": "4/24/2023 10:01 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 4",
+    "transactionType": "Debit",
+    "amount": "(4.77) USD"
+  },
+  {
+    "datetime": "4/24/2023 9:16 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(1.99) USD"
+  },
+  {
+    "datetime": "4/24/2023 3:29 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Burger King -UP HUB-Burger King, Terminal 1",
+    "transactionType": "Debit",
+    "amount": "(9.29) USD"
+  },
+  {
+    "datetime": "4/23/2023 5:58 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Flipps -UP Findlay Flipps Tacit Online",
+    "transactionType": "Debit",
+    "amount": "(2.59) USD"
+  },
+  {
+    "datetime": "4/23/2023 4:01 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Bluespoon Market -UP Warnock Bluespoon, Terminal 2",
+    "transactionType": "Debit",
+    "amount": "(1.59) USD"
+  },
+  {
+    "datetime": "4/22/2023 10:45 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(1.99) USD"
+  },
+  {
+    "datetime": "12345678910...\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t  Page 5 of 16, items 61 to 75 of 228.",
+    "accountName": "",
+    "cardNumber": "",
+    "location": "",
+    "transactionType": "",
+    "amount": ""
+  },
+  {
+    "datetime": "4/22/2023 1:10 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(4.35) USD"
+  },
+  {
+    "datetime": "4/21/2023 11:31 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.59) USD"
+  },
+  {
+    "datetime": "4/21/2023 10:02 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Pollock Dining Commons -UP Pollock Comm, Swirl Terminal 1",
+    "transactionType": "Debit",
+    "amount": "(2.90) USD"
+  },
+  {
+    "datetime": "4/20/2023 1:13 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 7",
+    "transactionType": "Debit",
+    "amount": "(5.88) USD"
+  },
+  {
+    "datetime": "4/19/2023 10:16 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 2",
+    "transactionType": "Debit",
+    "amount": "(1.99) USD"
+  },
+  {
+    "datetime": "4/19/2023 5:58 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Deli Salad -UP Findlay Deli Salad : POS 1",
+    "transactionType": "Debit",
+    "amount": "(1.12) USD"
+  },
+  {
+    "datetime": "4/19/2023 12:25 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 5",
+    "transactionType": "Debit",
+    "amount": "(9.06) USD"
+  },
+  {
+    "datetime": "4/19/2023 10:23 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 5",
+    "transactionType": "Debit",
+    "amount": "(5.49) USD"
+  },
+  {
+    "datetime": "4/18/2023 3:45 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(1.89) USD"
+  },
+  {
+    "datetime": "4/18/2023 12:44 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Northside -UP Warnock Commons, Terminal 1",
+    "transactionType": "Debit",
+    "amount": "(2.00) USD"
+  },
+  {
+    "datetime": "4/17/2023 1:51 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 7",
+    "transactionType": "Debit",
+    "amount": "(5.88) USD"
+  },
+  {
+    "datetime": "4/17/2023 12:05 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "4/17/2023 11:10 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Edge -UP Findlay Edge : POS 1",
+    "transactionType": "Debit",
+    "amount": "(3.99) USD"
+  },
+  {
+    "datetime": "4/17/2023 1:13 AM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "External Client External Client",
+    "transactionType": "Credit",
+    "amount": "1.00 USD"
+  },
+  {
+    "datetime": "4/17/2023 12:14 AM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "101E Computer Building WEPA Print Station 11",
+    "transactionType": "Debit",
+    "amount": "(0.64) USD"
+  },
+  {
+    "datetime": "12345678910...\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t  Page 5 of 16, items 61 to 75 of 228.",
+    "accountName": "",
+    "cardNumber": "",
+    "location": "",
+    "transactionType": "",
+    "amount": ""
+  },
+  {
+    "datetime": "4/22/2023 1:10 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(4.35) USD"
+  },
+  {
+    "datetime": "4/21/2023 11:31 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.59) USD"
+  },
+  {
+    "datetime": "4/21/2023 10:02 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Pollock Dining Commons -UP Pollock Comm, Swirl Terminal 1",
+    "transactionType": "Debit",
+    "amount": "(2.90) USD"
+  },
+  {
+    "datetime": "4/20/2023 1:13 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 7",
+    "transactionType": "Debit",
+    "amount": "(5.88) USD"
+  },
+  {
+    "datetime": "4/19/2023 10:16 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 2",
+    "transactionType": "Debit",
+    "amount": "(1.99) USD"
+  },
+  {
+    "datetime": "4/19/2023 5:58 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Deli Salad -UP Findlay Deli Salad : POS 1",
+    "transactionType": "Debit",
+    "amount": "(1.12) USD"
+  },
+  {
+    "datetime": "4/19/2023 12:25 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 5",
+    "transactionType": "Debit",
+    "amount": "(9.06) USD"
+  },
+  {
+    "datetime": "4/19/2023 10:23 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 5",
+    "transactionType": "Debit",
+    "amount": "(5.49) USD"
+  },
+  {
+    "datetime": "4/18/2023 3:45 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(1.89) USD"
+  },
+  {
+    "datetime": "4/18/2023 12:44 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Northside -UP Warnock Commons, Terminal 1",
+    "transactionType": "Debit",
+    "amount": "(2.00) USD"
+  },
+  {
+    "datetime": "4/17/2023 1:51 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 7",
+    "transactionType": "Debit",
+    "amount": "(5.88) USD"
+  },
+  {
+    "datetime": "4/17/2023 12:05 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "4/17/2023 11:10 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Edge -UP Findlay Edge : POS 1",
+    "transactionType": "Debit",
+    "amount": "(3.99) USD"
+  },
+  {
+    "datetime": "4/17/2023 1:13 AM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "External Client External Client",
+    "transactionType": "Credit",
+    "amount": "1.00 USD"
+  },
+  {
+    "datetime": "4/17/2023 12:14 AM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "101E Computer Building WEPA Print Station 11",
+    "transactionType": "Debit",
+    "amount": "(0.64) USD"
+  },
+  {
+    "datetime": "12345678910...\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t  Page 6 of 16, items 76 to 90 of 228.",
+    "accountName": "",
+    "cardNumber": "",
+    "location": "",
+    "transactionType": "",
+    "amount": ""
+  },
+  {
+    "datetime": "4/16/2023 12:21 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(5.40) USD"
+  },
+  {
+    "datetime": "4/15/2023 3:32 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(2.59) USD"
+  },
+  {
+    "datetime": "4/15/2023 3:09 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Deli Salad -UP Findlay Deli Salad : POS 2",
+    "transactionType": "Debit",
+    "amount": "(2.20) USD"
+  },
+  {
+    "datetime": "4/15/2023 3:08 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Deli Salad -UP Findlay Deli Salad : POS 2",
+    "transactionType": "Debit",
+    "amount": "(2.20) USD"
+  },
+  {
+    "datetime": "4/14/2023 3:51 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Deli Salad -UP Findlay Deli Salad : POS 2",
+    "transactionType": "Debit",
+    "amount": "(0.70) USD"
+  },
+  {
+    "datetime": "4/14/2023 10:03 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 7",
+    "transactionType": "Debit",
+    "amount": "(5.88) USD"
+  },
+  {
+    "datetime": "4/13/2023 6:56 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "4/13/2023 4:52 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "West Wing, The -UP Waring West Wing, Terminal 3",
+    "transactionType": "Debit",
+    "amount": "(0.70) USD"
+  },
+  {
+    "datetime": "4/13/2023 4:51 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "West Wing, The -UP Waring West Wing Tacit Online",
+    "transactionType": "Debit",
+    "amount": "(2.59) USD"
+  },
+  {
+    "datetime": "4/12/2023 6:03 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(5.40) USD"
+  },
+  {
+    "datetime": "4/12/2023 10:04 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.90) USD"
+  },
+  {
+    "datetime": "4/12/2023 7:17 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "4/11/2023 11:54 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 2",
+    "transactionType": "Debit",
+    "amount": "(1.99) USD"
+  },
+  {
+    "datetime": "4/11/2023 7:55 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(5.40) USD"
+  },
+  {
+    "datetime": "4/11/2023 5:06 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(2.96) USD"
+  },
+  {
+    "datetime": "12345678910...\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t  Page 6 of 16, items 76 to 90 of 228.",
+    "accountName": "",
+    "cardNumber": "",
+    "location": "",
+    "transactionType": "",
+    "amount": ""
+  },
+  {
+    "datetime": "4/16/2023 12:21 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(5.40) USD"
+  },
+  {
+    "datetime": "4/15/2023 3:32 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(2.59) USD"
+  },
+  {
+    "datetime": "4/15/2023 3:09 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Deli Salad -UP Findlay Deli Salad : POS 2",
+    "transactionType": "Debit",
+    "amount": "(2.20) USD"
+  },
+  {
+    "datetime": "4/15/2023 3:08 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Deli Salad -UP Findlay Deli Salad : POS 2",
+    "transactionType": "Debit",
+    "amount": "(2.20) USD"
+  },
+  {
+    "datetime": "4/14/2023 3:51 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Deli Salad -UP Findlay Deli Salad : POS 2",
+    "transactionType": "Debit",
+    "amount": "(0.70) USD"
+  },
+  {
+    "datetime": "4/14/2023 10:03 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 7",
+    "transactionType": "Debit",
+    "amount": "(5.88) USD"
+  },
+  {
+    "datetime": "4/13/2023 6:56 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "4/13/2023 4:52 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "West Wing, The -UP Waring West Wing, Terminal 3",
+    "transactionType": "Debit",
+    "amount": "(0.70) USD"
+  },
+  {
+    "datetime": "4/13/2023 4:51 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "West Wing, The -UP Waring West Wing Tacit Online",
+    "transactionType": "Debit",
+    "amount": "(2.59) USD"
+  },
+  {
+    "datetime": "4/12/2023 6:03 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(5.40) USD"
+  },
+  {
+    "datetime": "4/12/2023 10:04 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.90) USD"
+  },
+  {
+    "datetime": "4/12/2023 7:17 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "4/11/2023 11:54 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 2",
+    "transactionType": "Debit",
+    "amount": "(1.99) USD"
+  },
+  {
+    "datetime": "4/11/2023 7:55 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(5.40) USD"
+  },
+  {
+    "datetime": "4/11/2023 5:06 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(2.96) USD"
+  },
+  {
+    "datetime": "12345678910...\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t  Page 7 of 16, items 91 to 105 of 228.",
+    "accountName": "",
+    "cardNumber": "",
+    "location": "",
+    "transactionType": "",
+    "amount": ""
+  },
+  {
+    "datetime": "4/11/2023 1:24 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 5",
+    "transactionType": "Debit",
+    "amount": "(5.88) USD"
+  },
+  {
+    "datetime": "4/11/2023 10:43 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "4/10/2023 11:30 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.19) USD"
+  },
+  {
+    "datetime": "4/10/2023 8:06 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Starbucks -UP HUB-Starbucks, Terminal 1",
+    "transactionType": "Debit",
+    "amount": "(7.60) USD"
+  },
+  {
+    "datetime": "4/10/2023 3:43 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Deli Salad -UP Findlay Deli Salad : POS 2",
+    "transactionType": "Debit",
+    "amount": "(2.24) USD"
+  },
+  {
+    "datetime": "4/10/2023 3:00 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "4/10/2023 10:00 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Pollock Dining Commons -UP Pollock Comm, Swirl Terminal 1",
+    "transactionType": "Debit",
+    "amount": "(2.90) USD"
+  },
+  {
+    "datetime": "4/9/2023 11:52 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 2",
+    "transactionType": "Debit",
+    "amount": "(1.99) USD"
+  },
+  {
+    "datetime": "4/9/2023 9:22 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Flipps -UP Findlay Flipps Tacit Online",
+    "transactionType": "Debit",
+    "amount": "(5.28) USD"
+  },
+  {
+    "datetime": "4/8/2023 9:59 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "4/8/2023 8:49 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Bluespoon Market -UP Warnock Bluespoon, Terminal 2",
+    "transactionType": "Debit",
+    "amount": "(0.70) USD"
+  },
+  {
+    "datetime": "4/8/2023 1:32 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(4.35) USD"
+  },
+  {
+    "datetime": "4/7/2023 11:17 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "4/7/2023 6:29 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 2",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "4/7/2023 2:49 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Starbucks -UP HUB-Starbucks, Terminal 1",
+    "transactionType": "Debit",
+    "amount": "(3.65) USD"
+  },
+  {
+    "datetime": "12345678910...\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t  Page 7 of 16, items 91 to 105 of 228.",
+    "accountName": "",
+    "cardNumber": "",
+    "location": "",
+    "transactionType": "",
+    "amount": ""
+  },
+  {
+    "datetime": "4/11/2023 1:24 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 5",
+    "transactionType": "Debit",
+    "amount": "(5.88) USD"
+  },
+  {
+    "datetime": "4/11/2023 10:43 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "4/10/2023 11:30 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.19) USD"
+  },
+  {
+    "datetime": "4/10/2023 8:06 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Starbucks -UP HUB-Starbucks, Terminal 1",
+    "transactionType": "Debit",
+    "amount": "(7.60) USD"
+  },
+  {
+    "datetime": "4/10/2023 3:43 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Deli Salad -UP Findlay Deli Salad : POS 2",
+    "transactionType": "Debit",
+    "amount": "(2.24) USD"
+  },
+  {
+    "datetime": "4/10/2023 3:00 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "4/10/2023 10:00 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Pollock Dining Commons -UP Pollock Comm, Swirl Terminal 1",
+    "transactionType": "Debit",
+    "amount": "(2.90) USD"
+  },
+  {
+    "datetime": "4/9/2023 11:52 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 2",
+    "transactionType": "Debit",
+    "amount": "(1.99) USD"
+  },
+  {
+    "datetime": "4/9/2023 9:22 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Flipps -UP Findlay Flipps Tacit Online",
+    "transactionType": "Debit",
+    "amount": "(5.28) USD"
+  },
+  {
+    "datetime": "4/8/2023 9:59 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "4/8/2023 8:49 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Bluespoon Market -UP Warnock Bluespoon, Terminal 2",
+    "transactionType": "Debit",
+    "amount": "(0.70) USD"
+  },
+  {
+    "datetime": "4/8/2023 1:32 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(4.35) USD"
+  },
+  {
+    "datetime": "4/7/2023 11:17 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "4/7/2023 6:29 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 2",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "4/7/2023 2:49 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Starbucks -UP HUB-Starbucks, Terminal 1",
+    "transactionType": "Debit",
+    "amount": "(3.65) USD"
+  },
+  {
+    "datetime": "12345678910...\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t  Page 8 of 16, items 106 to 120 of 228.",
+    "accountName": "",
+    "cardNumber": "",
+    "location": "",
+    "transactionType": "",
+    "amount": ""
+  },
+  {
+    "datetime": "4/7/2023 10:02 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 5",
+    "transactionType": "Debit",
+    "amount": "(5.88) USD"
+  },
+  {
+    "datetime": "4/6/2023 7:51 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Flipps -UP Findlay Flipps Tacit Online",
+    "transactionType": "Debit",
+    "amount": "(2.59) USD"
+  },
+  {
+    "datetime": "4/6/2023 5:30 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(5.38) USD"
+  },
+  {
+    "datetime": "4/6/2023 1:08 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "In a Pickle, SFD -UP Redifer In a Pickle,Terminal 1",
+    "transactionType": "Debit",
+    "amount": "(0.70) USD"
+  },
+  {
+    "datetime": "4/6/2023 12:45 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Hot Steel/Fresco Caliente -UP Redifer Hot Steel, Terminal 1",
+    "transactionType": "Debit",
+    "amount": "(3.50) USD"
+  },
+  {
+    "datetime": "4/6/2023 11:38 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 6",
+    "transactionType": "Debit",
+    "amount": "(5.88) USD"
+  },
+  {
+    "datetime": "4/5/2023 11:01 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(1.09) USD"
+  },
+  {
+    "datetime": "4/5/2023 9:35 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Flipps -UP Findlay Flipps Tacit Online",
+    "transactionType": "Debit",
+    "amount": "(0.70) USD"
+  },
+  {
+    "datetime": "4/5/2023 3:48 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Deli Salad -UP Findlay Deli Salad : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.24) USD"
+  },
+  {
+    "datetime": "4/5/2023 12:05 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Edge -UP Findlay Edge : POS 2",
+    "transactionType": "Debit",
+    "amount": "(3.99) USD"
+  },
+  {
+    "datetime": "4/5/2023 12:04 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "4/4/2023 8:04 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 2",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "4/4/2023 5:51 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(5.40) USD"
+  },
+  {
+    "datetime": "4/4/2023 3:00 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "In a Pickle, SFD -UP Redifer In a Pickle,Terminal 1",
+    "transactionType": "Debit",
+    "amount": "(0.70) USD"
+  },
+  {
+    "datetime": "4/4/2023 1:43 PM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "101E Computer Building WEPA Print Station 25",
+    "transactionType": "Debit",
+    "amount": "(0.08) USD"
+  },
+  {
+    "datetime": "12345678910...\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t  Page 8 of 16, items 106 to 120 of 228.",
+    "accountName": "",
+    "cardNumber": "",
+    "location": "",
+    "transactionType": "",
+    "amount": ""
+  },
+  {
+    "datetime": "4/7/2023 10:02 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 5",
+    "transactionType": "Debit",
+    "amount": "(5.88) USD"
+  },
+  {
+    "datetime": "4/6/2023 7:51 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Flipps -UP Findlay Flipps Tacit Online",
+    "transactionType": "Debit",
+    "amount": "(2.59) USD"
+  },
+  {
+    "datetime": "4/6/2023 5:30 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(5.38) USD"
+  },
+  {
+    "datetime": "4/6/2023 1:08 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "In a Pickle, SFD -UP Redifer In a Pickle,Terminal 1",
+    "transactionType": "Debit",
+    "amount": "(0.70) USD"
+  },
+  {
+    "datetime": "4/6/2023 12:45 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Hot Steel/Fresco Caliente -UP Redifer Hot Steel, Terminal 1",
+    "transactionType": "Debit",
+    "amount": "(3.50) USD"
+  },
+  {
+    "datetime": "4/6/2023 11:38 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 6",
+    "transactionType": "Debit",
+    "amount": "(5.88) USD"
+  },
+  {
+    "datetime": "4/5/2023 11:01 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(1.09) USD"
+  },
+  {
+    "datetime": "4/5/2023 9:35 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Flipps -UP Findlay Flipps Tacit Online",
+    "transactionType": "Debit",
+    "amount": "(0.70) USD"
+  },
+  {
+    "datetime": "4/5/2023 3:48 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Deli Salad -UP Findlay Deli Salad : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.24) USD"
+  },
+  {
+    "datetime": "4/5/2023 12:05 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Edge -UP Findlay Edge : POS 2",
+    "transactionType": "Debit",
+    "amount": "(3.99) USD"
+  },
+  {
+    "datetime": "4/5/2023 12:04 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "4/4/2023 8:04 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 2",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "4/4/2023 5:51 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(5.40) USD"
+  },
+  {
+    "datetime": "4/4/2023 3:00 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "In a Pickle, SFD -UP Redifer In a Pickle,Terminal 1",
+    "transactionType": "Debit",
+    "amount": "(0.70) USD"
+  },
+  {
+    "datetime": "4/4/2023 1:43 PM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "101E Computer Building WEPA Print Station 25",
+    "transactionType": "Debit",
+    "amount": "(0.08) USD"
+  },
+  {
+    "datetime": "12345678910...\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t  Page 9 of 16, items 121 to 135 of 228.",
+    "accountName": "",
+    "cardNumber": "",
+    "location": "",
+    "transactionType": "",
+    "amount": ""
+  },
+  {
+    "datetime": "4/4/2023 12:29 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 7",
+    "transactionType": "Debit",
+    "amount": "(5.88) USD"
+  },
+  {
+    "datetime": "4/3/2023 10:37 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(4.99) USD"
+  },
+  {
+    "datetime": "4/3/2023 9:35 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Flipps -UP Findlay Flipps Tacit Online",
+    "transactionType": "Debit",
+    "amount": "(2.59) USD"
+  },
+  {
+    "datetime": "4/3/2023 3:26 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Burger King -UP HUB-Burger King, Terminal 1",
+    "transactionType": "Debit",
+    "amount": "(11.58) USD"
+  },
+  {
+    "datetime": "4/3/2023 12:30 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "4/2/2023 4:40 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 4",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "4/2/2023 1:29 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(5.40) USD"
+  },
+  {
+    "datetime": "4/1/2023 2:42 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Starbucks Pattee Library -UP Pattee Library, Term 3",
+    "transactionType": "Debit",
+    "amount": "(8.50) USD"
+  },
+  {
+    "datetime": "4/1/2023 1:24 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "3/31/2023 7:23 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(5.40) USD"
+  },
+  {
+    "datetime": "3/31/2023 2:24 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 6",
+    "transactionType": "Debit",
+    "amount": "(5.88) USD"
+  },
+  {
+    "datetime": "3/31/2023 10:03 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 7",
+    "transactionType": "Debit",
+    "amount": "(5.88) USD"
+  },
+  {
+    "datetime": "3/30/2023 7:42 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(5.40) USD"
+  },
+  {
+    "datetime": "3/30/2023 12:07 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 6",
+    "transactionType": "Debit",
+    "amount": "(5.49) USD"
+  },
+  {
+    "datetime": "3/29/2023 11:32 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "12345678910...\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t  Page 9 of 16, items 121 to 135 of 228.",
+    "accountName": "",
+    "cardNumber": "",
+    "location": "",
+    "transactionType": "",
+    "amount": ""
+  },
+  {
+    "datetime": "4/4/2023 12:29 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 7",
+    "transactionType": "Debit",
+    "amount": "(5.88) USD"
+  },
+  {
+    "datetime": "4/3/2023 10:37 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(4.99) USD"
+  },
+  {
+    "datetime": "4/3/2023 9:35 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Flipps -UP Findlay Flipps Tacit Online",
+    "transactionType": "Debit",
+    "amount": "(2.59) USD"
+  },
+  {
+    "datetime": "4/3/2023 3:26 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Burger King -UP HUB-Burger King, Terminal 1",
+    "transactionType": "Debit",
+    "amount": "(11.58) USD"
+  },
+  {
+    "datetime": "4/3/2023 12:30 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "4/2/2023 4:40 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 4",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "4/2/2023 1:29 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(5.40) USD"
+  },
+  {
+    "datetime": "4/1/2023 2:42 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Starbucks Pattee Library -UP Pattee Library, Term 3",
+    "transactionType": "Debit",
+    "amount": "(8.50) USD"
+  },
+  {
+    "datetime": "4/1/2023 1:24 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "3/31/2023 7:23 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(5.40) USD"
+  },
+  {
+    "datetime": "3/31/2023 2:24 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 6",
+    "transactionType": "Debit",
+    "amount": "(5.88) USD"
+  },
+  {
+    "datetime": "3/31/2023 10:03 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 7",
+    "transactionType": "Debit",
+    "amount": "(5.88) USD"
+  },
+  {
+    "datetime": "3/30/2023 7:42 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(5.40) USD"
+  },
+  {
+    "datetime": "3/30/2023 12:07 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 6",
+    "transactionType": "Debit",
+    "amount": "(5.49) USD"
+  },
+  {
+    "datetime": "3/29/2023 11:32 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "12345678910...\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t  Page 10 of 16, items 136 to 150 of 228.",
+    "accountName": "",
+    "cardNumber": "",
+    "location": "",
+    "transactionType": "",
+    "amount": ""
+  },
+  {
+    "datetime": "3/29/2023 8:51 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Flipps -UP Findlay Flipps Tacit Online",
+    "transactionType": "Debit",
+    "amount": "(2.59) USD"
+  },
+  {
+    "datetime": "3/29/2023 10:03 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 5",
+    "transactionType": "Debit",
+    "amount": "(5.88) USD"
+  },
+  {
+    "datetime": "3/28/2023 9:14 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(2.49) USD"
+  },
+  {
+    "datetime": "3/28/2023 2:32 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 6",
+    "transactionType": "Debit",
+    "amount": "(5.88) USD"
+  },
+  {
+    "datetime": "3/28/2023 1:27 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Bluespoon Market -UP Warnock Bluespoon, Terminal 2",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "3/27/2023 11:51 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(1.99) USD"
+  },
+  {
+    "datetime": "3/27/2023 9:02 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Concessions, Stand 400 BJC Stand 400, Terminal 5",
+    "transactionType": "Debit",
+    "amount": "(6.00) USD"
+  },
+  {
+    "datetime": "3/27/2023 9:00 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Concessions, Portal Locations BJC Portal, 19 Dippin Dots",
+    "transactionType": "Debit",
+    "amount": "(5.00) USD"
+  },
+  {
+    "datetime": "3/27/2023 8:04 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 2",
+    "transactionType": "Debit",
+    "amount": "(5.48) USD"
+  },
+  {
+    "datetime": "3/26/2023 1:14 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Starbucks -UP HUB-Starbucks, Terminal 1",
+    "transactionType": "Debit",
+    "amount": "(3.65) USD"
+  },
+  {
+    "datetime": "3/25/2023 9:23 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(10.18) USD"
+  },
+  {
+    "datetime": "3/25/2023 6:26 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Deli Salad -UP Findlay Deli Salad : POS 1",
+    "transactionType": "Debit",
+    "amount": "(3.39) USD"
+  },
+  {
+    "datetime": "3/25/2023 1:42 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(4.35) USD"
+  },
+  {
+    "datetime": "3/24/2023 5:34 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "HUB McAlisters -UP HUB-McAlisters, Terminal 2",
+    "transactionType": "Debit",
+    "amount": "(8.79) USD"
+  },
+  {
+    "datetime": "3/24/2023 3:38 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Deli Salad -UP Findlay Deli Salad : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.24) USD"
+  },
+  {
+    "datetime": "12345678910...\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t  Page 10 of 16, items 136 to 150 of 228.",
+    "accountName": "",
+    "cardNumber": "",
+    "location": "",
+    "transactionType": "",
+    "amount": ""
+  },
+  {
+    "datetime": "3/29/2023 8:51 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Flipps -UP Findlay Flipps Tacit Online",
+    "transactionType": "Debit",
+    "amount": "(2.59) USD"
+  },
+  {
+    "datetime": "3/29/2023 10:03 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 5",
+    "transactionType": "Debit",
+    "amount": "(5.88) USD"
+  },
+  {
+    "datetime": "3/28/2023 9:14 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(2.49) USD"
+  },
+  {
+    "datetime": "3/28/2023 2:32 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 6",
+    "transactionType": "Debit",
+    "amount": "(5.88) USD"
+  },
+  {
+    "datetime": "3/28/2023 1:27 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Bluespoon Market -UP Warnock Bluespoon, Terminal 2",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "3/27/2023 11:51 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(1.99) USD"
+  },
+  {
+    "datetime": "3/27/2023 9:02 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Concessions, Stand 400 BJC Stand 400, Terminal 5",
+    "transactionType": "Debit",
+    "amount": "(6.00) USD"
+  },
+  {
+    "datetime": "3/27/2023 9:00 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Concessions, Portal Locations BJC Portal, 19 Dippin Dots",
+    "transactionType": "Debit",
+    "amount": "(5.00) USD"
+  },
+  {
+    "datetime": "3/27/2023 8:04 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 2",
+    "transactionType": "Debit",
+    "amount": "(5.48) USD"
+  },
+  {
+    "datetime": "3/26/2023 1:14 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Starbucks -UP HUB-Starbucks, Terminal 1",
+    "transactionType": "Debit",
+    "amount": "(3.65) USD"
+  },
+  {
+    "datetime": "3/25/2023 9:23 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(10.18) USD"
+  },
+  {
+    "datetime": "3/25/2023 6:26 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Deli Salad -UP Findlay Deli Salad : POS 1",
+    "transactionType": "Debit",
+    "amount": "(3.39) USD"
+  },
+  {
+    "datetime": "3/25/2023 1:42 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(4.35) USD"
+  },
+  {
+    "datetime": "3/24/2023 5:34 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "HUB McAlisters -UP HUB-McAlisters, Terminal 2",
+    "transactionType": "Debit",
+    "amount": "(8.79) USD"
+  },
+  {
+    "datetime": "3/24/2023 3:38 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Deli Salad -UP Findlay Deli Salad : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.24) USD"
+  },
+  {
+    "datetime": "...78910111213141516\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t  Page 11 of 16, items 151 to 165 of 228.",
+    "accountName": "",
+    "cardNumber": "",
+    "location": "",
+    "transactionType": "",
+    "amount": ""
+  },
+  {
+    "datetime": "3/24/2023 10:08 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.90) USD"
+  },
+  {
+    "datetime": "3/23/2023 10:45 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(4.48) USD"
+  },
+  {
+    "datetime": "3/23/2023 6:46 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Deli Salad -UP Findlay Deli Salad : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.24) USD"
+  },
+  {
+    "datetime": "3/23/2023 6:44 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Deli Salad -UP Findlay Deli Salad : POS 2",
+    "transactionType": "Debit",
+    "amount": "(2.45) USD"
+  },
+  {
+    "datetime": "3/23/2023 1:14 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 7",
+    "transactionType": "Debit",
+    "amount": "(5.88) USD"
+  },
+  {
+    "datetime": "3/22/2023 10:09 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.90) USD"
+  },
+  {
+    "datetime": "3/21/2023 11:23 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(5.68) USD"
+  },
+  {
+    "datetime": "3/21/2023 2:56 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(2.49) USD"
+  },
+  {
+    "datetime": "3/21/2023 12:37 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 7",
+    "transactionType": "Debit",
+    "amount": "(5.88) USD"
+  },
+  {
+    "datetime": "3/20/2023 11:05 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.69) USD"
+  },
+  {
+    "datetime": "3/20/2023 10:12 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.90) USD"
+  },
+  {
+    "datetime": "3/19/2023 11:59 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "3/19/2023 7:38 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(5.40) USD"
+  },
+  {
+    "datetime": "3/19/2023 2:36 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.59) USD"
+  },
+  {
+    "datetime": "3/19/2023 1:20 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Starbucks -UP HUB-Starbucks, Terminal 2",
+    "transactionType": "Debit",
+    "amount": "(3.65) USD"
+  },
+  {
+    "datetime": "...78910111213141516\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t  Page 12 of 16, items 166 to 180 of 228.",
+    "accountName": "",
+    "cardNumber": "",
+    "location": "",
+    "transactionType": "",
+    "amount": ""
+  },
+  {
+    "datetime": "3/18/2023 3:26 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.99) USD"
+  },
+  {
+    "datetime": "3/18/2023 2:35 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Deli Salad -UP Findlay Deli Salad : POS 2",
+    "transactionType": "Debit",
+    "amount": "(2.10) USD"
+  },
+  {
+    "datetime": "3/17/2023 4:55 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(2.19) USD"
+  },
+  {
+    "datetime": "3/17/2023 12:19 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 7",
+    "transactionType": "Debit",
+    "amount": "(11.41) USD"
+  },
+  {
+    "datetime": "3/17/2023 10:08 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.90) USD"
+  },
+  {
+    "datetime": "3/16/2023 11:32 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "3/16/2023 10:00 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(1.99) USD"
+  },
+  {
+    "datetime": "3/16/2023 7:58 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Flipps -UP Findlay Flipps Tacit Online",
+    "transactionType": "Debit",
+    "amount": "(2.68) USD"
+  },
+  {
+    "datetime": "3/16/2023 5:53 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "3/16/2023 1:10 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 7",
+    "transactionType": "Debit",
+    "amount": "(5.88) USD"
+  },
+  {
+    "datetime": "3/15/2023 10:07 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.90) USD"
+  },
+  {
+    "datetime": "3/14/2023 7:29 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(5.40) USD"
+  },
+  {
+    "datetime": "3/13/2023 8:16 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Pollock -UP Market Pollock Tacit Online",
+    "transactionType": "Debit",
+    "amount": "(3.25) USD"
+  },
+  {
+    "datetime": "3/13/2023 10:06 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Pollock Dining Commons -UP Pollock Comm, Swirl Terminal 1",
+    "transactionType": "Debit",
+    "amount": "(2.90) USD"
+  },
+  {
+    "datetime": "3/12/2023 11:31 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 2",
+    "transactionType": "Debit",
+    "amount": "(1.09) USD"
+  },
+  {
+    "datetime": "...78910111213141516\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t  Page 13 of 16, items 181 to 195 of 228.",
+    "accountName": "",
+    "cardNumber": "",
+    "location": "",
+    "transactionType": "",
+    "amount": ""
+  },
+  {
+    "datetime": "3/12/2023 7:53 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(5.40) USD"
+  },
+  {
+    "datetime": "3/3/2023 8:31 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(11.57) USD"
+  },
+  {
+    "datetime": "3/3/2023 2:08 AM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "Caldwell Gregory Kiosoft API C&G Kiosoft API",
+    "transactionType": "Debit",
+    "amount": "(1.50) USD"
+  },
+  {
+    "datetime": "3/3/2023 1:24 AM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "Caldwell Gregory Kiosoft API C&G Kiosoft API",
+    "transactionType": "Debit",
+    "amount": "(1.50) USD"
+  },
+  {
+    "datetime": "3/3/2023 1:24 AM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "External Client External Client",
+    "transactionType": "Credit",
+    "amount": "3.00 USD"
+  },
+  {
+    "datetime": "3/2/2023 10:52 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(1.99) USD"
+  },
+  {
+    "datetime": "3/2/2023 7:28 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(5.40) USD"
+  },
+  {
+    "datetime": "3/2/2023 4:56 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "3/1/2023 4:28 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "3/1/2023 1:31 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Deli Salad -UP Findlay Deli Salad : POS 1",
+    "transactionType": "Debit",
+    "amount": "(1.12) USD"
+  },
+  {
+    "datetime": "2/28/2023 8:18 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Flipps -UP Findlay Flipps Tacit Online",
+    "transactionType": "Debit",
+    "amount": "(2.90) USD"
+  },
+  {
+    "datetime": "2/28/2023 3:06 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(1.26) USD"
+  },
+  {
+    "datetime": "2/28/2023 12:19 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 7",
+    "transactionType": "Debit",
+    "amount": "(5.49) USD"
+  },
+  {
+    "datetime": "2/27/2023 8:20 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Flipps -UP Findlay Flipps Tacit Online",
+    "transactionType": "Debit",
+    "amount": "(2.59) USD"
+  },
+  {
+    "datetime": "2/27/2023 10:08 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.90) USD"
+  },
+  {
+    "datetime": "...78910111213141516\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t  Page 14 of 16, items 196 to 210 of 228.",
+    "accountName": "",
+    "cardNumber": "",
+    "location": "",
+    "transactionType": "",
+    "amount": ""
+  },
+  {
+    "datetime": "2/25/2023 10:10 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "2/25/2023 1:13 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(4.35) USD"
+  },
+  {
+    "datetime": "2/24/2023 10:53 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "2/24/2023 8:59 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(7.78) USD"
+  },
+  {
+    "datetime": "2/23/2023 8:36 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Flipps -UP Findlay Flipps Tacit Online",
+    "transactionType": "Debit",
+    "amount": "(2.59) USD"
+  },
+  {
+    "datetime": "2/23/2023 6:59 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(1.59) USD"
+  },
+  {
+    "datetime": "2/23/2023 4:45 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(1.09) USD"
+  },
+  {
+    "datetime": "2/23/2023 11:50 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Burger King -UP HUB-Burger King, Terminal 2",
+    "transactionType": "Debit",
+    "amount": "(5.29) USD"
+  },
+  {
+    "datetime": "2/22/2023 10:15 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.90) USD"
+  },
+  {
+    "datetime": "2/21/2023 7:55 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Flipps -UP Findlay Flipps Tacit Online",
+    "transactionType": "Debit",
+    "amount": "(2.59) USD"
+  },
+  {
+    "datetime": "2/21/2023 6:00 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Panda Express -UP Panda Express : POS 1",
+    "transactionType": "Debit",
+    "amount": "(11.08) USD"
+  },
+  {
+    "datetime": "2/21/2023 2:45 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "HUB Food Court -UP HUB-Food Court, Terminal 5",
+    "transactionType": "Debit",
+    "amount": "(5.49) USD"
+  },
+  {
+    "datetime": "2/20/2023 7:48 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(1.09) USD"
+  },
+  {
+    "datetime": "2/20/2023 10:11 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.90) USD"
+  },
+  {
+    "datetime": "2/18/2023 11:01 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 1",
+    "transactionType": "Debit",
+    "amount": "(1.09) USD"
+  },
+  {
+    "datetime": "...78910111213141516\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t  Page 15 of 16, items 211 to 225 of 228.",
+    "accountName": "",
+    "cardNumber": "",
+    "location": "",
+    "transactionType": "",
+    "amount": ""
+  },
+  {
+    "datetime": "2/17/2023 11:50 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(4.69) USD"
+  },
+  {
+    "datetime": "2/17/2023 11:39 PM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "Caldwell Gregory Kiosoft API C&G Kiosoft API",
+    "transactionType": "Debit",
+    "amount": "(1.50) USD"
+  },
+  {
+    "datetime": "2/17/2023 9:58 PM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "Caldwell Gregory Kiosoft API C&G Kiosoft API",
+    "transactionType": "Debit",
+    "amount": "(1.50) USD"
+  },
+  {
+    "datetime": "2/17/2023 9:57 PM",
+    "accountName": "LionCash",
+    "cardNumber": "0000006020680005592516",
+    "location": "External Client External Client",
+    "transactionType": "Credit",
+    "amount": "3.00 USD"
+  },
+  {
+    "datetime": "2/17/2023 10:12 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.90) USD"
+  },
+  {
+    "datetime": "2/16/2023 8:59 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Flipps -UP Findlay Flipps Tacit Online",
+    "transactionType": "Debit",
+    "amount": "(2.99) USD"
+  },
+  {
+    "datetime": "2/15/2023 11:28 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(3.89) USD"
+  },
+  {
+    "datetime": "2/15/2023 1:32 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Deli Salad -UP Findlay Deli Salad : POS 2",
+    "transactionType": "Debit",
+    "amount": "(1.12) USD"
+  },
+  {
+    "datetime": "2/15/2023 12:04 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(2.89) USD"
+  },
+  {
+    "datetime": "2/14/2023 6:01 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Panda Express -UP Panda Express : POS 1",
+    "transactionType": "Debit",
+    "amount": "(8.16) USD"
+  },
+  {
+    "datetime": "2/14/2023 1:21 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Bluespoon Market -UP Warnock Bluespoon Tacit Online",
+    "transactionType": "Debit",
+    "amount": "(2.90) USD"
+  },
+  {
+    "datetime": "2/13/2023 7:24 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Redifer City Grill, SFD -UP Redifer Grill Tacit Online",
+    "transactionType": "Debit",
+    "amount": "(1.85) USD"
+  },
+  {
+    "datetime": "2/13/2023 10:07 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.90) USD"
+  },
+  {
+    "datetime": "2/12/2023 11:54 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006020680005592516",
+    "location": "Market Place East -UP Findlay Market Place E : POS 3",
+    "transactionType": "Debit",
+    "amount": "(3.89) USD"
+  },
+  {
+    "datetime": "2/12/2023 4:34 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Flipps -UP Findlay Flipps Tacit Online",
+    "transactionType": "Debit",
+    "amount": "(2.59) USD"
+  },
+  {
+    "datetime": "...78910111213141516\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t  Page 16 of 16, items 226 to 228 of 228.",
+    "accountName": "",
+    "cardNumber": "",
+    "location": "",
+    "transactionType": "",
+    "amount": ""
+  },
+  {
+    "datetime": "2/12/2023 1:13 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Starbucks -UP HUB-Starbucks, Terminal 1",
+    "transactionType": "Debit",
+    "amount": "(3.65) USD"
+  },
+  {
+    "datetime": "2/11/2023 12:13 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(4.35) USD"
+  },
+  {
+    "datetime": "2/10/2023 10:08 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.90) USD"
+  },
+  {
+    "datetime": "...78910111213141516\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t  Page 16 of 16, items 226 to 228 of 228.",
+    "accountName": "",
+    "cardNumber": "",
+    "location": "",
+    "transactionType": "",
+    "amount": ""
+  },
+  {
+    "datetime": "2/12/2023 1:13 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Starbucks -UP HUB-Starbucks, Terminal 1",
+    "transactionType": "Debit",
+    "amount": "(3.65) USD"
+  },
+  {
+    "datetime": "2/11/2023 12:13 PM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(4.35) USD"
+  },
+  {
+    "datetime": "2/10/2023 10:08 AM",
+    "accountName": "Campus Meal Plan",
+    "cardNumber": "0000006398930010001706",
+    "location": "Commons, The -UP Findlay Commons, The : POS 1",
+    "transactionType": "Debit",
+    "amount": "(2.90) USD"
+  }
+]

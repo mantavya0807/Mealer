@@ -49,4 +49,7 @@ app.post('/login', async (req: express.Request, res: express.Response) => {
     }
 });
 
-export const api = onRequest(app);
+export const api = onRequest({
+  timeoutSeconds: 540,  // Maximum allowed: 540 seconds (9 minutes)
+  region: 'us-central1'
+}, app);
