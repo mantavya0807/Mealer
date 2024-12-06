@@ -1,6 +1,5 @@
-// functions/src/dataProcessor/transactionProcessor.ts
-
-import { Timestamp, getFirestore } from 'firebase-admin/firestore';
+import { Timestamp } from 'firebase-admin/firestore';
+import { db } from '../firebase/config.js';
 
 interface Transaction {
   timestamp: Timestamp;
@@ -9,52 +8,85 @@ interface Transaction {
   amount: number;
   category: string;
   subcategory: string;
-}
-
-interface ProcessResult {
-  success: boolean;
-  transactionCount?: number;
-  error?: string;
+  cardNumber: string;
+  transactionType: string;
 }
 
 const processTransactionData = (csvData: string): Transaction[] => {
-  const pagePattern = /12345678910...\s+Â Page \d+ of \d+, items \d+ to \d+ of \d+./;
-  const rawSections = csvData.split(pagePattern);
-
-  // Remove empty sections and duplicates
-  const uniqueSections = [...new Set(rawSections.filter(section => section.trim().length > 0))];
-
-  // Process each line into transaction object
-  const transactions: Transaction[] = [];
-  
-  uniqueSections.forEach(section => {
-    const lines = section.split('\n').filter(line => line.trim().length > 0);
+  try {
+    console.log('Starting to process CSV data...');
     
-    lines.forEach(line => {
-      // Use underscore prefix for unused variables
-      const [datetime, accountType, _cardNumber, location, _transactionType, amount] = line.split('\t');
+    const lines = csvData.split('\n')
+      .filter(line => line.trim())
+      .filter(line => !line.includes('Date/Time Account Name'))
+      .filter(line => !line.includes('Page'))
+      .filter(line => /^\d/.test(line));
+
+    const transactions: Transaction[] = [];
+
+    for (const line of lines) {
+      console.log('Processing line:', line);
+
+      const fields = line.split('\t').map(field => field.trim());
       
-      if (!datetime || !accountType || !amount) return;
+      if (fields.length < 6) {
+        console.log('Invalid number of fields:', fields.length, fields);
+        continue;
+      }
 
-      // Clean and parse amount
-      const cleanAmount = amount.replace(' USD', '').replace('(', '').replace(')', '');
-      const parsedAmount = parseFloat(cleanAmount) * (amount.includes('(') ? -1 : 1);
+      const [dateTime, accountType, cardNumber, location, transactionType, amount] = fields;
 
-      // Determine category and subcategory based on location
-      const { category, subcategory } = categorizePurchase(location);
+      try {
+        const [datePart, timePart] = dateTime.split(' ');
+        const [month, day, year] = datePart.split('/');
+        const [hour, minute] = timePart.split(':');
+        
+        const date = new Date(
+          parseInt(year),
+          parseInt(month) - 1,
+          parseInt(day),
+          parseInt(hour),
+          parseInt(minute)
+        );
 
-      transactions.push({
-        timestamp: Timestamp.fromDate(new Date(datetime)),
-        accountType: accountType as 'LionCash' | 'CampusMealPlan',
-        location,
-        amount: parsedAmount,
-        category,
-        subcategory
-      });
-    });
-  });
+        const cleanAmount = amount
+          .replace(' USD', '')
+          .replace('(', '')
+          .replace(')', '')
+          .trim();
+        const parsedAmount = parseFloat(cleanAmount) * (amount.includes('(') ? -1 : 1);
 
-  return transactions;
+        if (isNaN(parsedAmount)) {
+          console.error('Invalid amount:', amount, 'parsed as:', parsedAmount);
+          continue;
+        }
+
+        const { category, subcategory } = categorizePurchase(location);
+
+        const transaction = {
+          timestamp: Timestamp.fromDate(date),
+          accountType: accountType.replace('Campus Meal Plan', 'CampusMealPlan') as 'LionCash' | 'CampusMealPlan',
+          cardNumber: cardNumber.trim(),
+          location: location.trim(),
+          transactionType: transactionType.trim(),
+          amount: parsedAmount,
+          category,
+          subcategory
+        };
+
+        console.log('Processed transaction:', transaction);
+        transactions.push(transaction);
+      } catch (err) {
+        console.error('Error processing line:', line, err);
+      }
+    }
+
+    console.log(`Successfully processed ${transactions.length} transactions`);
+    return transactions;
+  } catch (error) {
+    console.error('Error in processTransactionData:', error);
+    throw error;
+  }
 };
 
 const categorizePurchase = (location: string) => {
@@ -63,7 +95,9 @@ const categorizePurchase = (location: string) => {
     'Warnock': 'North',
     'Redifer': 'South',
     'Pollock': 'Pollock',
-    'HUB': 'Central'
+    'HUB': 'Central',
+    'Gilly': 'Vending',
+    'Edge': 'West'
   };
 
   const subcategories = {
@@ -71,13 +105,16 @@ const categorizePurchase = (location: string) => {
     'Starbucks': 'Coffee',
     'Commons': 'Dining Hall',
     'Bluespoon': 'Cafe',
-    'WEPA': 'Printing'
+    'Grill': 'Restaurant',
+    'Vending': 'Vending',
+    'Gilly': 'Vending',
+    'Flipps': 'Online Order',
+    'Edge': 'Coffee Shop'
   };
 
   let category = 'Other';
   let subcategory = 'Other';
 
-  // Determine main category
   for (const [key, value] of Object.entries(categories)) {
     if (location.includes(key)) {
       category = value;
@@ -85,7 +122,6 @@ const categorizePurchase = (location: string) => {
     }
   }
 
-  // Determine subcategory
   for (const [key, value] of Object.entries(subcategories)) {
     if (location.includes(key)) {
       subcategory = value;
@@ -101,20 +137,21 @@ const uploadTransactions = async (
   userEmail: string
 ): Promise<boolean> => {
   try {
-    const batch = [];
-    const firestore = getFirestore();
-    const userTransactionsRef = firestore.collection(`users/${userEmail}/transactions`);
+    console.log(`Starting upload of ${transactions.length} transactions for ${userEmail}`);
+    
+    const batch = db.batch();
+    const userTransactionsRef = db.collection(`users/${userEmail}/transactions`);
 
-    for (const transaction of transactions) {
-      batch.push(
-        userTransactionsRef.add({
-          ...transaction,
-          createdAt: Timestamp.now()
-        })
-      );
-    }
+    transactions.forEach(transaction => {
+      const docRef = userTransactionsRef.doc();
+      batch.set(docRef, {
+        ...transaction,
+        createdAt: Timestamp.now()
+      });
+    });
 
-    await Promise.all(batch);
+    await batch.commit();
+    console.log(`Successfully uploaded ${transactions.length} transactions`);
     return true;
   } catch (error) {
     console.error('Error uploading transactions:', error);
@@ -125,9 +162,18 @@ const uploadTransactions = async (
 export const processAndUploadTransactions = async (
   csvData: string,
   userEmail: string
-): Promise<ProcessResult> => {
+) => {
   try {
+    console.log('Starting transaction processing for:', userEmail);
     const transactions = processTransactionData(csvData);
+    
+    if (transactions.length === 0) {
+      return {
+        success: false,
+        error: 'No valid transactions found in data'
+      };
+    }
+
     const uploadSuccess = await uploadTransactions(transactions, userEmail);
     
     if (!uploadSuccess) {

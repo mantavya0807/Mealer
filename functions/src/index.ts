@@ -1,7 +1,7 @@
 // functions/src/index.ts
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
-import 'dotenv/config';
 import { onRequest } from 'firebase-functions/v2/https';
 import { initiatePSULogin } from './scraper/pennStateScraper.js';
 import { processAndUploadTransactions } from './dataProcessor/transactionProcessor.js';
@@ -25,12 +25,14 @@ app.post('/login', async (req: express.Request, res: express.Response) => {
 
     console.log('Starting login process for:', psuEmail);
     const result = await initiatePSULogin(psuEmail, password, verificationCode, fromDate, toDate);
-
+    console.log('Login result:', result);
     // Inside the /login endpoint handler where the error occurs
 if (result.success) {
   if (result.csvData) {
+    console.log('Login successful for:', psuEmail);
     try {
       // Process and upload the CSV data
+      console.log('Processing and uploading transactions for:', psuEmail);
       const processResult = await processAndUploadTransactions(result.csvData, psuEmail);
       
       if (processResult.success) {
@@ -101,7 +103,7 @@ app.post('/upload-transactions', async (req: express.Request, res: express.Respo
     
     if (processResult.success) {
       res.json({ 
-        success: true, 
+        success: true,
         transactionCount: processResult.transactionCount
       });
     } else {
