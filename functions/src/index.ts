@@ -10,17 +10,19 @@ app.use(express.json());
 
 app.post('/login', async (req: express.Request, res: express.Response) => {
     try {
-      const { psuEmail, password, verificationCode } = req.body;
+      const { psuEmail, password, verificationCode, fromDate, toDate } = req.body;
       
-      if (!psuEmail || !password || !verificationCode) {
+      if (!psuEmail || !password || !verificationCode || !fromDate || !toDate) {
         res.status(400).json({ 
-          error: 'Email, password, and verification code are all required'
+          error: "Fill in all required fields",
         });
         return;
       }
   
       console.log('Starting login process for:', psuEmail);
-      const result = await initiatePSULogin(psuEmail, password, verificationCode);
+
+      
+      const result = await initiatePSULogin(psuEmail, password, verificationCode, fromDate, toDate);
       
       if (result.success) {
         res.json({ 
