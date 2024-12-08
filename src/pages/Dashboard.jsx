@@ -3,15 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { 
   User, 
   Calendar, 
-  AlertTriangle, 
   DollarSign, 
   Wallet, 
   Clock, 
   Loader,
-  Info 
+  Info,
+  CheckCircle // Add this import
 } from 'lucide-react';
 import { auth } from '../firebase/config';
-import { signOut } from 'firebase/auth';
+import LoadingGames from '../components/loading/LoadingGames';
 
 export default function Dashboard() {
   const [psuCredentials, setPsuCredentials] = useState({
@@ -27,6 +27,8 @@ export default function Dashboard() {
   const [emailError, setEmailError] = useState('');
   const [error, setError] = useState('');
   const [requiresVerification, setRequiresVerification] = useState(false);
+  const [showLoadingGame, setShowLoadingGame] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const navigate = useNavigate();
 
@@ -37,23 +39,49 @@ export default function Dashboard() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setPsuCredentials(prev => ({ ...prev, [name]: value }));
+    // Remove any whitespace for email and verification code
+    const cleanValue = name === 'email' || name === 'verificationCode' ? value.trim() : value;
+    setPsuCredentials(prev => ({ ...prev, [name]: cleanValue }));
 
     if (name === 'email') {
-      if (value && !validatePSUEmail(value)) {
+      if (cleanValue && !validatePSUEmail(cleanValue)) {
         setEmailError('Email must be in format: abc1234@psu.edu');
       } else {
         setEmailError('');
       }
     }
 
-    if (name === 'verificationCode' && value.length === 6) {
-      setError('');
+    if (name === 'verificationCode') {
+      // Only allow numbers
+      if (!/^\d*$/.test(cleanValue)) {
+        return;
+      }
+      if (cleanValue.length === 6) {
+        setError('');
+      }
     }
+  };
+
+  const formatDate = (dateStr) => {
+    const date = new Date(dateStr);
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${month}/${day}/${year}`;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Clear previous errors
+    setError('');
+    setEmailError('');
+
+    // Validate all fields
+    if (!psuCredentials.email || !psuCredentials.password || !psuCredentials.verificationCode) {
+      setError('Please fill in all fields');
+      return;
+    }
 
     // Validate email
     if (!validatePSUEmail(psuCredentials.email)) {
@@ -61,52 +89,92 @@ export default function Dashboard() {
       return;
     }
 
-    // If verification is required, validate verification code
-    if (requiresVerification && psuCredentials.verificationCode.length !== 6) {
-      setError('Please enter a 6-digit verification code');
+    // Validate verification code
+    if (psuCredentials.verificationCode.length !== 6) {
+      setError('Please enter a valid 6-digit verification code');
       return;
     }
 
+    // Validate dates
+    if (!dateRange.from || !dateRange.to) {
+      setError('Please select both from and to dates');
+      return;
+    }
+
+    setShowLoadingGame(true);
     setLoading(true);
-    setError('');
 
     try {
+      const requestBody = {
+        psuEmail: psuCredentials.email,
+        password: psuCredentials.password,
+        verificationCode: psuCredentials.verificationCode,
+        fromDate: formatDate(dateRange.from),
+        toDate: formatDate(dateRange.to)
+      };
+
+      console.log('Sending request with:', {
+        ...requestBody,
+        password: '[REDACTED]'
+      });
+
       const response = await fetch('http://127.0.0.1:5001/meal-plan-optimizer/us-central1/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(psuCredentials)
+        body: JSON.stringify(requestBody)
       });
 
       const data = await response.json();
 
       if (data.success) {
-        // Handle successful login
-        console.log('Login successful');
-        navigate('/dashboard'); // Redirect to dashboard or desired page
+        setSuccess(true);
+        setShowLoadingGame(false);
+        
+        // Wait a bit to show success message, then navigate
+        setTimeout(() => {
+          navigate('/past-searches');
+        }, 2000);
       } else if (data.requiresVerification) {
         setRequiresVerification(true);
-        setError('Verification code required. Please enter the code from your authenticator app.');
+        setError('Verification code required.');
+        setShowLoadingGame(false);
       } else {
         setError(data.message || 'Login failed. Please try again.');
+        setShowLoadingGame(false);
       }
-    } catch (err) {
-      setError('Failed to connect to PSU services. Please try again.');
+    } catch (error) {
+      console.error('Login error:', error);
+      setError(error.message || 'Failed to connect to PSU services.');
+      setShowLoadingGame(false);
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleSignOut = () => {
-    signOut(auth);
-    navigate('/');
   };
 
   const userDisplayName = auth.currentUser?.displayName || auth.currentUser?.email || 'User';
 
   return (
     <div className="space-y-6">
+      {/* Loading Game Overlay */}
+      {showLoadingGame && (
+        <div className="fixed inset-0 bg-gray-900/90 z-50 flex items-center justify-center">
+          <LoadingGames 
+            onQuit={() => {
+              setShowLoadingGame(false);
+              setLoading(false);
+            }} 
+          />
+        </div>
+      )}
+      {success && (
+  <div className="bg-green-500/10 border border-green-500 p-4 rounded-lg flex items-center space-x-3">
+    <CheckCircle className="h-5 w-5 text-green-500" />
+    <span className="text-green-500">Data successfully scraped! Check the recent searches below.</span>
+  </div>
+)}
+
       {/* User Welcome */}
       <div className="bg-gray-800 p-4 rounded-lg">
         <p className="text-white">
@@ -133,6 +201,7 @@ export default function Dashboard() {
         )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Email and Password/Code Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-2">Penn State Email</label>
@@ -156,42 +225,42 @@ export default function Dashboard() {
               )}
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-  <div>
-    <label className="block text-sm font-medium text-gray-300 mb-2">Password</label>
-    <input
-      type="password"
-      name="password"
-      className="block w-full rounded-md bg-gray-700 border-gray-600 text-white"
-      value={psuCredentials.password}
-      onChange={handleInputChange}
-      required
-    />
-  </div>
-  <div>
-    <label className="block text-sm font-medium text-gray-300 mb-2">
-      Microsoft Authenticator Code
-      <span className="text-yellow-500 ml-2 text-xs">
-        (Ensure '{'>'} 10s remaining)
-      </span>
-    </label>
-    <input
-      type="text"
-      name="verificationCode"
-      maxLength="6"
-      pattern="\d{6}"
-      className={`block w-full rounded-md bg-gray-700 border ${
-        error ? 'border-red-500' : 'border-gray-600'
-      } text-white`}
-      placeholder="Enter 6-digit code"
-      value={psuCredentials.verificationCode}
-      onChange={handleInputChange}
-      required
-    />
-  </div>
-</div>
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-2">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  className="block w-full rounded-md bg-gray-700 border-gray-600 text-white"
+                  value={psuCredentials.password}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Microsoft Authenticator Code
+                  <span className="text-yellow-500 ml-2 text-xs">
+                    (Ensure {'>'} 10s remaining)
+                  </span>
+                </label>
+                <input
+                  type="text"
+                  name="verificationCode"
+                  maxLength="6"
+                  pattern="\d{6}"
+                  className={`block w-full rounded-md bg-gray-700 border ${
+                    psuCredentials.verificationCode && psuCredentials.verificationCode.length !== 6
+                      ? 'border-red-500'
+                      : 'border-gray-600'
+                  } text-white`}
+                  placeholder="Enter 6-digit code"
+                  value={psuCredentials.verificationCode}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+            </div>
           </div>
-
-     
 
           {/* Date Range Selection */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -252,8 +321,8 @@ export default function Dashboard() {
         </form>
       </div>
 
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+{/* Stats Grid */}
+<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {/* Balance Card */}
         <div className="bg-gray-800 overflow-hidden shadow rounded-lg">
           <div className="p-5">

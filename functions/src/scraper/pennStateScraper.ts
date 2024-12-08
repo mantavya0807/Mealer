@@ -86,7 +86,6 @@ async function getTablePageCount(page: Page): Promise<number> {
   console.log(`Total table pages found: ${pageCount}`);
   return pageCount;
 }
-
 async function scrapeTransactionHistory(page: Page): Promise<Transaction[]> {
   console.log('Starting to scrape transaction history from the table...');
   await waitForTableLoad(page);
@@ -104,49 +103,66 @@ async function scrapeTransactionHistory(page: Page): Promise<Transaction[]> {
     allTransactions = allTransactions.concat(pageTransactions);
 
     if (currentPage < totalPages) {
-      // Handle pagination
-      try {
-        if (currentPage < 10) {
-          await page.click(`#ctl00_MainContent_ResultRadGrid_ctl00 > tfoot > tr > td > table > tbody > tr > td > div.rgWrap.rgNumPart > a:nth-child(${currentPage + 1})`);
-        } else {
-          const paginationItems = await page.$$('.rgWrap.rgNumPart > a');
-          const pageNumbers = await Promise.all(
-            paginationItems.map(item => 
-              page.evaluate(el => ({ 
-                text: el.textContent?.trim() || '', 
-                isActive: el.classList.contains('rgCurrentPage')
-              }), item)
-            )
-          );
+      let attempt = 0;
+      let navigated = false;
 
-          const currentSet = pageNumbers.findIndex(p => p.isActive);
-          const lastVisibleNumber = pageNumbers[pageNumbers.length - 2]?.text;
+      while (attempt < 3 && !navigated) {
+        try {
+          attempt++;
+          console.log(`Attempt ${attempt} to navigate to page ${currentPage + 1}...`);
 
-          if (currentPage === parseInt(lastVisibleNumber)) {
-            await page.click(`#ctl00_MainContent_ResultRadGrid_ctl00 > tfoot > tr > td > table > tbody > tr > td > div.rgWrap.rgNumPart > a:last-child`);
+          if (currentPage < 10) {
+            await page.click(`#ctl00_MainContent_ResultRadGrid_ctl00 > tfoot > tr > td > table > tbody > tr > td > div.rgWrap.rgNumPart > a:nth-child(${currentPage + 1})`);
           } else {
-            const nextPageInSet = currentSet + 1;
-            await page.click(`#ctl00_MainContent_ResultRadGrid_ctl00 > tfoot > tr > td > table > tbody > tr > td > div.rgWrap.rgNumPart > a:nth-child(${nextPageInSet + 1})`);
+            const paginationItems = await page.$$('.rgWrap.rgNumPart > a');
+            const pageNumbers = await Promise.all(
+              paginationItems.map(item => 
+                page.evaluate(el => ({ 
+                  text: el.textContent?.trim() || '', 
+                  isActive: el.classList.contains('rgCurrentPage')
+                }), item)
+              )
+            );
+
+            const currentSet = pageNumbers.findIndex(p => p.isActive);
+            const lastVisibleNumber = pageNumbers[pageNumbers.length - 2]?.text;
+
+            if (currentPage === parseInt(lastVisibleNumber)) {
+              await page.click(`#ctl00_MainContent_ResultRadGrid_ctl00 > tfoot > tr > td > table > tbody > tr > td > div.rgWrap.rgNumPart > a:last-child`);
+            } else {
+              const nextPageInSet = currentSet + 1;
+              await page.click(`#ctl00_MainContent_ResultRadGrid_ctl00 > tfoot > tr > td > table > tbody > tr > td > div.rgWrap.rgNumPart > a:nth-child(${nextPageInSet + 1})`);
+            }
+          }
+
+          // Wait for navigation to complete and table to reload
+          await waitForTableLoad(page);
+          
+          // Additional validation that page changed
+          const newPageNumber = await page.evaluate(() => {
+            const activePage = document.querySelector('.rgWrap.rgNumPart .rgCurrentPage');
+            return activePage ? parseInt(activePage.textContent || '0') : 0;
+          });
+
+          if (newPageNumber === currentPage + 1) {
+            navigated = true;
+            console.log(`Successfully navigated to page ${currentPage + 1}.`);
+          } else {
+            throw new Error('Page navigation did not result in the expected page number.');
+          }
+
+        } catch (error) {
+          console.error(`Attempt ${attempt} failed to navigate to page ${currentPage + 1}:`, error);
+          if (attempt >= 3) {
+            console.error(`Failed to navigate to page ${currentPage + 1} after 3 attempts. Skipping this page.`);
+          } else {
+            await page.waitForTimeout(2000);
           }
         }
+      }
 
-        // Wait for navigation to complete and table to reload
-        await waitForTableLoad(page);
-        
-        // Additional validation that page changed
-        const newPageNumber = await page.evaluate(() => {
-          const activePage = document.querySelector('.rgWrap.rgNumPart .rgCurrentPage');
-          return activePage ? parseInt(activePage.textContent || '0') : 0;
-        });
-
-        if (newPageNumber !== currentPage + 1) {
-          throw new Error('Page navigation failed');
-        }
-
-      } catch (error) {
-        console.error(`Error navigating to page ${currentPage + 1}:`, error);
-        // Retry navigation once
-        await page.waitForTimeout(2000);
+      if (!navigated) {
+        currentPage++;
         continue;
       }
     }
