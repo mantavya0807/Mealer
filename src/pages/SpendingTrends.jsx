@@ -30,29 +30,33 @@ export default function SpendingTrends() {
 useEffect(() => {
   const fetchAvailablePSUUsers = async () => {
     try {
-      // Get the users collection
-      const usersRef = collection(db, 'users');
-      const snapshot = await getDocs(usersRef);
-      
-// Get all users data from the collection
-const allUsers = snapshot.docs.map(doc => ({
-  id: doc.id,
-  ...doc.data()
-}));
-console.log('All users:', allUsers); // Debug log
-      // Filter for PSU emails from document IDs
-      const psuUsers = allUsers
-        .filter(id => id.endsWith('@psu.edu'))
-        .map(email => ({
-          id: email,
-          email: email
-        }));
+      // Fetch all searches first
+      const response = await fetch(
+        'http://127.0.0.1:5001/meal-plan-optimizer/us-central1/api/searches'
+      );
   
-      console.log('Found PSU users:', psuUsers); // Debug log
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `Request failed with status ${response.status}`);
+      }
+  
+      const data = await response.json();
+      
+      // Extract unique PSU emails from searches
+      const uniquePsuEmails = new Set(
+        data.searches.map(search => search.psuEmail)
+      );
+  
+      // Convert to format needed for MultiSelect
+      const psuUsers = Array.from(uniquePsuEmails).map(email => ({
+        id: email,
+        email: email
+      }));
+  
+      console.log('Found PSU users:', psuUsers);
   
       if (psuUsers.length > 0) {
         setAvailableUsers(psuUsers);
-        // Set first user as default selected
         setSelectedUsers([psuUsers[0].email]);
       } else {
         console.log('No PSU users found');
@@ -65,7 +69,6 @@ console.log('All users:', allUsers); // Debug log
       setLoading(false);
     }
   };
-
   fetchAvailablePSUUsers();
 }, []);
 
