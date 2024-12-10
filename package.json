@@ -18,6 +18,7 @@
     "react-router-dom": "^7.0.2",
     "react-scripts": "5.0.1",
     "recharts": "^2.14.1",
+    "shadcn-ui": "^0.9.4",
     "tailwindcss": "^3.4.16",
     "web-vitals": "^2.1.4"
   },

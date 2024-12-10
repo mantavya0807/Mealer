@@ -1,0 +1,80 @@
+[debug] [2024-12-10T11:15:31.382Z] ----------------------------------------------------------------------
+[debug] [2024-12-10T11:15:31.383Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\manta\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init functions
+[debug] [2024-12-10T11:15:31.384Z] CLI Version:   13.27.0
+[debug] [2024-12-10T11:15:31.384Z] Platform:      win32
+[debug] [2024-12-10T11:15:31.384Z] Node Version:  v22.12.0
+[debug] [2024-12-10T11:15:31.384Z] Time:          Tue Dec 10 2024 06:15:31 GMT-0500 (Eastern Standard Time)
+[debug] [2024-12-10T11:15:31.384Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-12-10T11:15:31.426Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-12-10T11:15:31.427Z] > authorizing via signed-in user (mantavyamahajan@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  E:\Projects\Mealer
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2024-12-10T11:15:34.775Z] Using project from CLI flag: meal-plan-optimizer
+[debug] [2024-12-10T11:15:34.777Z] Checked if tokens are valid: false, expires at: 1733825140513
+[debug] [2024-12-10T11:15:34.778Z] Checked if tokens are valid: false, expires at: 1733825140513
+[debug] [2024-12-10T11:15:34.778Z] > refreshing access token with scopes: []
+[debug] [2024-12-10T11:15:34.781Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-12-10T11:15:34.781Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-12-10T11:15:34.951Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2024-12-10T11:15:34.951Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-12-10T11:15:34.959Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/meal-plan-optimizer [none]
+[debug] [2024-12-10T11:15:35.398Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/meal-plan-optimizer 200
+[debug] [2024-12-10T11:15:35.398Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/meal-plan-optimizer {"projectId":"meal-plan-optimizer","projectNumber":"382402339688","displayName":"Meal-Plan-Optimizer","name":"projects/meal-plan-optimizer","resources":{"hostingSite":"meal-plan-optimizer","realtimeDatabaseInstance":"meal-plan-optimizer-default-rtdb"},"state":"ACTIVE","etag":"1_09227d07-8040-463d-91ed-93f8d0e1cf7f"}
+[info] i  Using project meal-plan-optimizer (Meal-Plan-Optimizer) 
+[info] 
+=== Functions Setup
+[debug] [2024-12-10T11:15:35.414Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-12-10T11:15:35.414Z] > authorizing via signed-in user (mantavyamahajan@gmail.com)
+[debug] [2024-12-10T11:15:35.414Z] [iam] checking project meal-plan-optimizer for permissions ["firebase.projects.get"]
+[debug] [2024-12-10T11:15:35.415Z] Checked if tokens are valid: true, expires at: 1733832933952
+[debug] [2024-12-10T11:15:35.415Z] Checked if tokens are valid: true, expires at: 1733832933952
+[debug] [2024-12-10T11:15:35.415Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/meal-plan-optimizer:testIamPermissions [none]
+[debug] [2024-12-10T11:15:35.415Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/meal-plan-optimizer:testIamPermissions x-goog-quota-user=projects/meal-plan-optimizer
+[debug] [2024-12-10T11:15:35.415Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/meal-plan-optimizer:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2024-12-10T11:15:35.602Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/meal-plan-optimizer:testIamPermissions 200
+[debug] [2024-12-10T11:15:35.602Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/meal-plan-optimizer:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2024-12-10T11:15:35.603Z] Checked if tokens are valid: true, expires at: 1733832933952
+[debug] [2024-12-10T11:15:35.603Z] Checked if tokens are valid: true, expires at: 1733832933952
+[debug] [2024-12-10T11:15:35.603Z] Checked if tokens are valid: true, expires at: 1733832933952
+[debug] [2024-12-10T11:15:35.603Z] Checked if tokens are valid: true, expires at: 1733832933952
+[debug] [2024-12-10T11:15:35.603Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-plan-optimizer/services/cloudfunctions.googleapis.com [none]
+[debug] [2024-12-10T11:15:35.603Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-plan-optimizer/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/meal-plan-optimizer
+[debug] [2024-12-10T11:15:35.604Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/meal-plan-optimizer/services/runtimeconfig.googleapis.com [none]
+[debug] [2024-12-10T11:15:35.604Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/meal-plan-optimizer/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/meal-plan-optimizer
+[debug] [2024-12-10T11:15:36.322Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-plan-optimizer/services/cloudfunctions.googleapis.com 200
+[debug] [2024-12-10T11:15:36.322Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-plan-optimizer/services/cloudfunctions.googleapis.com [omitted]
+[debug] [2024-12-10T11:15:36.323Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/meal-plan-optimizer/services/runtimeconfig.googleapis.com 200
+[debug] [2024-12-10T11:15:36.323Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/meal-plan-optimizer/services/runtimeconfig.googleapis.com [omitted]
+[info] 
+Detected existing codebase(s): default
+
+[info] Let's create a new codebase for your functions.
+[info] A directory corresponding to the codebase will be created in your project
+[info] with sample code pre-configured.
+
+[info] See https://firebase.google.com/docs/functions/organize-functions for
+[info] more information on organizing your functions using codebases.
+
+[info] Functions can be deployed with firebase deploy.
+

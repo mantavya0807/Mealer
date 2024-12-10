@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { db } from '../firebase/config';
 import { MultiSelect } from '../components/ui/multi-select';
 import { collection, query, getDocs } from 'firebase/firestore';
+import { SpendingPredictions } from './SpendingPredictions';
 import { 
   BarChart, LineChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, 
   ResponsiveContainer, PieChart, Pie, Cell 
@@ -11,12 +12,81 @@ import {
   Clock, 
   TrendingUp, 
   Calendar,
-  CircleDashed
+  CircleDashed,
+  Coffee,
+  Utensils,
+  Moon,
+  InfoIcon,
+  AlertCircle,
+  Info
 } from 'lucide-react';
+
+
 import { all } from 'axios';
 
 const COLORS = ['#8884d8', '#82ca9d', '#ffc658', '#ff8042', '#af19ff'];
 const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+// Constants for discount calculations
+const DISCOUNT_CONFIG = {
+  mealPlan: {
+    regular: 0.65, // This represents the ratio/percentage
+    central: 0,
+    market: 0
+  },
+  lionCash: {
+    regular: 0.10,
+    central: 0,
+    market: 0.10
+  }
+};
+
+const COMMONS_MAPPING = {
+  'findlay': 'East Commons',
+  'warnock': 'North Commons',
+  'waring': 'West Commons',
+  'redifer': 'South Commons',
+  'pollock': 'Pollock Commons'
+};
+
+const getBaseLocation = (location) => {
+  // Convert to lowercase for case-insensitive comparison
+  const loc = location.toLowerCase();
+  
+  // Check for commons first
+  for (const [key, value] of Object.entries(COMMONS_MAPPING)) {
+    if (loc.includes(key)) {
+      return value;
+    }
+  }
+  
+  // Extract first significant word (excluding common prefixes)
+  const words = loc.split(' ');
+  let baseWord = words[0];
+  
+  if (baseWord === 'up' || baseWord === '-up' || baseWord === 'the') {
+    baseWord = words[1] || words[0];
+  }
+  
+  // Special cases
+  if (loc.includes('starbucks')) return 'Starbucks';
+  if (loc.includes('chick') || loc.includes('cfa')) return 'Chick-fil-A';
+  if (baseWord.includes('edge')) return 'Edge Coffee';
+  if (baseWord.includes('louie')) return "Louie's";
+  
+  // If it's just "commons", return null to prevent generic "Commons" appearing
+  if (baseWord === 'commons') return null;
+  
+  // Capitalize first letter
+  return baseWord.charAt(0).toUpperCase() + baseWord.slice(1);
+};
+
+// Define meal times
+const MEAL_TIMES = {
+  breakfast: { start: 6, end: 10 },
+  lunch: { start: 11, end: 14 },
+  dinner: { start: 17, end: 21 },
+  lateNight: { start: 21, end: 24 }
+};
 
 export default function SpendingTrends() {
   const [availableUsers, setAvailableUsers] = useState([]);
@@ -72,6 +142,29 @@ useEffect(() => {
   fetchAvailablePSUUsers();
 }, []);
 
+const InfoTooltip = ({ label, tooltip }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  
+  return (
+    <div className="relative inline-block">
+      <div 
+        className="inline-flex items-center cursor-help"
+        onMouseEnter={() => setIsVisible(true)}
+        onMouseLeave={() => setIsVisible(false)}
+      >
+        {label}
+        <Info className="h-4 w-4 ml-1 text-gray-400" />
+      </div>
+      
+      {isVisible && (
+        <div className="absolute z-50 w-64 p-3 text-sm bg-gray-800 text-gray-200 rounded-md shadow-lg border border-gray-700 -right-2 top-full mt-1">
+          <div className="absolute -top-2 right-3 w-4 h-4 bg-gray-800 border-t border-l border-gray-700 transform rotate-45" />
+          {tooltip}
+        </div>
+      )}
+    </div>
+  );
+};
   // Fetch transactions whenever selected users change
   useEffect(() => {
     const fetchTransactions = async () => {
@@ -113,45 +206,106 @@ useEffect(() => {
     fetchTransactions();
   }, [selectedUsers]);
 
-  // Analytics calculations
-  const analytics = useMemo(() => {
+
+    const analytics = useMemo(() => {
     if (!transactions.length) return null;
 
     try {
-      // Total spending calculation
+      // Calculate actual cost and discounts
+      const calculateActualCost = (transaction) => {
+        const { amount, accountType, location } = transaction;
+        const isMarket = location.toLowerCase().includes('market');
+        const isCentral = location.toLowerCase().includes('hub') || 
+                         location.toLowerCase().includes('central');
+
+        if (accountType === 'CampusMealPlan') {
+          if (isMarket || isCentral) {
+            return Math.abs(amount);
+          }
+          // Use the ratio directly without fixed numbers
+          return Math.abs(amount) / (1 - DISCOUNT_CONFIG.mealPlan.regular);
+        }
+
+        return Math.abs(amount);
+      };
+
+      // Rest of the analytics calculation remains the same, but use getBaseLocation
+      const dailySpending = {};
+      const categoryBreakdown = {};
+      const locationSpending = {};
+      const mealTimeSpending = {
+        breakfast: {},
+        lunch: {},
+        dinner: {},
+        lateNight: {}
+      };
+
+      let totalActualCost = 0;
+      let wastedDiscountOpportunities = 0;
       const totalSpending = transactions.reduce((sum, t) => sum + Math.abs(t.amount || 0), 0);
-      const averageTransaction = totalSpending / transactions.length;
 
-      // Daily spending patterns
-      const dailySpending = transactions.reduce((acc, t) => {
+      transactions.forEach(t => {
+        const actualCost = calculateActualCost(t);
+        const baseLocation = getBaseLocation(t.location);
+        
+        // Skip if location is null
+        if (!baseLocation) return;
+  
         const day = DAYS[t.timestamp.getDay()];
-        if (!acc[day]) acc[day] = 0;
-        acc[day] += Math.abs(t.amount || 0);
-        return acc;
-      }, {});
+        const hour = t.timestamp.getHours();
+  
+        // Update totals
+        totalActualCost += actualCost;
+        if (t.accountType === 'CampusMealPlan' && 
+            (t.location.toLowerCase().includes('market') || 
+             t.location.toLowerCase().includes('hub'))) {
+          wastedDiscountOpportunities += Math.abs(t.amount);
+        }
 
-      // Category breakdown
-      const categoryBreakdown = transactions.reduce((acc, t) => {
-        const category = t.category || 'Uncategorized';
-        if (!acc[category]) acc[category] = 0;
-        acc[category] += Math.abs(t.amount || 0);
-        return acc;
-      }, {});
+        // Update daily spending
+      dailySpending[day] = (dailySpending[day] || 0) + Math.abs(t.amount);
 
-      // Find busiest day and top category
-      const busiestDay = Object.entries(dailySpending)
-        .sort(([,a], [,b]) => b - a)[0]?.[0] || 'N/A';
+      // Update category breakdown
+      const category = t.category || 'Uncategorized';
+      categoryBreakdown[category] = (categoryBreakdown[category] || 0) + Math.abs(t.amount);
 
-      const topCategory = Object.entries(categoryBreakdown)
-        .sort(([,a], [,b]) => b - a)[0]?.[0] || 'N/A';
+      // Update location spending
+      locationSpending[baseLocation] = (locationSpending[baseLocation] || 0) + 
+        Math.abs(t.amount);
 
-      // Location analysis
-      const locationSpending = transactions.reduce((acc, t) => {
-        const location = t.location || 'Unknown Location';
-        if (!acc[location]) acc[location] = 0;
-        acc[location] += Math.abs(t.amount || 0);
-        return acc;
-      }, {});
+      // Update meal time spending
+      for (const [mealTime, timeRange] of Object.entries(MEAL_TIMES)) {
+        if (hour >= timeRange.start && hour < timeRange.end) {
+          if (!mealTimeSpending[mealTime][baseLocation]) {
+            mealTimeSpending[mealTime][baseLocation] = {
+              visits: 0,
+              totalSpent: 0
+            };
+          }
+          mealTimeSpending[mealTime][baseLocation].visits++;
+          mealTimeSpending[mealTime][baseLocation].totalSpent += Math.abs(t.amount);
+        }
+      }
+    });
+
+      // Format meal preferences
+      const mealPreferences = {};
+      for (const [mealTime, locations] of Object.entries(mealTimeSpending)) {
+        mealPreferences[mealTime] = Object.entries(locations)
+          .map(([location, stats]) => ({
+            location,
+            visits: stats.visits,
+            totalSpent: stats.totalSpent,
+            averageSpent: stats.totalSpent / stats.visits
+          }))
+          .sort((a, b) => b.visits - a.visits);
+      }
+
+      // Calculate meal plan efficiency based on the discount ratio
+      const mealPlanTransactions = transactions.filter(t => t.accountType === 'CampusMealPlan');
+      const mealPlanSpent = mealPlanTransactions.reduce((sum, t) => sum + Math.abs(t.amount), 0);
+      const mealPlanEfficiency = mealPlanSpent > 0 ? 
+        ((totalActualCost - totalSpending) / (totalActualCost * DISCOUNT_CONFIG.mealPlan.regular)) : 0;
 
       const topLocations = Object.entries(locationSpending)
         .sort(([,a], [,b]) => b - a)
@@ -160,18 +314,31 @@ useEffect(() => {
 
       return {
         totalSpending,
-        averageTransaction,
-        busiestDay,
-        topCategory,
+        averageTransaction: totalSpending / transactions.length,
+        busiestDay: Object.entries(dailySpending)
+          .sort(([,a], [,b]) => b - a)[0]?.[0] || 'N/A',
+        topCategory: Object.entries(categoryBreakdown)
+          .sort(([,a], [,b]) => b - a)[0]?.[0] || 'N/A',
         dailySpending,
         categoryBreakdown,
-        topLocations
+        topLocations,
+        mealPreferences,
+        discountAnalysis: {
+          actualSpent: totalSpending,
+          potentialCost: totalActualCost,
+          totalSaved: totalActualCost - totalSpending,
+          wastedDiscountOpportunities,
+          mealPlanEfficiency
+        }
       };
     } catch (err) {
       console.error('Error calculating analytics:', err);
       return null;
     }
   }, [transactions]);
+
+    
+
 
   if (loading) {
     return (
@@ -189,6 +356,7 @@ useEffect(() => {
       </div>
     );
   }
+
 
   return (
     <div className="p-6 space-y-6">
@@ -226,6 +394,11 @@ useEffect(() => {
       {/* Show analytics only when we have data */}
       {!loading && !error && analytics && (
         <>
+        <SpendingPredictions 
+            transactions={transactions}
+            currentBalance={currentBalance}
+            mealPlanType={mealPlanType}
+        />
                 {/* Key Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-gray-800 p-6 rounded-lg">
@@ -354,8 +527,95 @@ useEffect(() => {
           ))}
         </div>
       </div>
-      </>
+
+ {/* Discount Analysis */}
+           {/* Discount Analysis with updated tooltips */}
+           <div className="bg-gray-800 p-6 rounded-lg">
+            <h2 className="text-lg font-semibold text-white mb-4">Discount Analysis</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="bg-gray-700 p-4 rounded-lg">
+                <div className="flex items-center">
+                  <DollarSign className="h-6 w-6 text-green-400" />
+                  <div className="ml-3">
+                    <InfoTooltip
+                      label={<span className="text-sm text-gray-400">Total Saved</span>}
+                      tooltip="The total amount saved through meal plan and LionCash discounts compared to retail prices."
+                    />
+                    <p className="text-xl font-bold text-white">
+                      ${analytics.discountAnalysis.totalSaved.toFixed(2)}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gray-700 p-4 rounded-lg">
+                <div className="flex items-center">
+                  <AlertCircle className="h-6 w-6 text-red-400" />
+                  <div className="ml-3">
+                    <InfoTooltip
+                      label={<span className="text-sm text-gray-400">Wasted Opportunities</span>}
+                      tooltip="Amount spent at locations where meal plan discounts don't apply (like markets or hub locations). Consider using these funds at locations with meal plan discounts to maximize savings."
+                    />
+                    <p className="text-xl font-bold text-white">
+                      ${analytics.discountAnalysis.wastedDiscountOpportunities.toFixed(2)}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gray-700 p-4 rounded-lg">
+                <div className="flex items-center">
+                  <TrendingUp className="h-6 w-6 text-blue-400" />
+                  <div className="ml-3">
+                    <InfoTooltip
+                      label={<span className="text-sm text-gray-400">Meal Plan Efficiency</span>}
+                      tooltip="How effectively you're using your meal plan discounts. 100% means you're maximizing available discounts, lower percentages indicate potential for more savings by choosing locations with better discount rates."
+                    />
+                    <p className="text-xl font-bold text-white">
+                      {(analytics.discountAnalysis.mealPlanEfficiency * 100).toFixed(1)}%
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Meal Time Analysis */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {Object.entries(analytics.mealPreferences).map(([mealTime, preferences]) => {
+              const Icon = mealTime === 'breakfast' ? Coffee :
+                          mealTime === 'lateNight' ? Moon : Utensils;
+              
+              return (
+                <div key={mealTime} className="bg-gray-800 p-6 rounded-lg">
+                  <div className="flex items-center mb-4">
+                    <Icon className="h-6 w-6 text-indigo-400" />
+                    <h3 className="text-lg font-semibold text-white ml-2">
+                      {mealTime.charAt(0).toUpperCase() + mealTime.slice(1)} Preferences
+                    </h3>
+                  </div>
+                  <div className="space-y-4">
+                    {preferences.slice(0, 3).map((pref) => (
+                      <div key={pref.location} className="bg-gray-700 p-4 rounded-lg">
+                        <div className="flex justify-between items-center">
+                          <div>
+                            <p className="text-white font-medium">{pref.location}</p>
+                            <p className="text-sm text-gray-400">{pref.visits} visits</p>
+                          </div>
+                          <div className="text-right">
+                            <p className="text-indigo-400">${pref.averageSpent.toFixed(2)}</p>
+                            <p className="text-sm text-gray-400">avg/visit</p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </>
       )}
     </div>
-      )
-}
+  );
+} 

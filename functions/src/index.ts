@@ -44,6 +44,17 @@ interface LoginRequest {
   toDate: string;
 }
 
+interface MLPredictionRequest {
+  transactions: Transaction[];
+  currentBalance: number;
+  mealPlanType: string;
+}
+
+interface MLRecommendationRequest {
+  transactions: Transaction[];
+  currentMealPlan: string;
+}
+
 // Initialize Express app
 const app = express();
 
@@ -209,10 +220,27 @@ app.get('/analytics/:email', async (req: Request, res: Response) => {
     }
 
     const analytics = await getAnalytics(email);
-    return res.json(analytics);
+    
+    // Add validation for the analytics result
+    if (!analytics) {
+      return res.status(404).json({ 
+        error: 'No analytics data found',
+        details: `No data available for ${email}`
+      });
+    }
+
+    // Add debug logging
+    console.log('Analytics response for', email, ':', JSON.stringify(analytics, null, 2));
+
+    return res.json({
+      success: true,
+      data: analytics
+    });
+
   } catch (error) {
     console.error('Error fetching analytics:', error);
     return res.status(500).json({ 
+      success: false,
       error: 'Failed to fetch analytics',
       details: error instanceof Error ? error.message : 'Unknown error'
     });
@@ -240,6 +268,128 @@ app.post('/analytics/compare', async (req: Request, res: Response) => {
     console.error('Error fetching comparative analytics:', error);
     return res.status(500).json({ 
       error: 'Failed to fetch comparative analytics',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
+// Meal Plan Recommendations endpoint
+app.post('/ml/meal-plan-recommendation', async (req: Request<any, any, MLRecommendationRequest>, res: Response) => {
+  try {
+    const { transactions, currentMealPlan } = req.body;
+    
+    if (!transactions || !currentMealPlan) {
+      return res.status(400).json({
+        error: "Missing required parameters",
+        details: "transactions and currentMealPlan are required"
+      });
+    }
+
+    const totalSpent = transactions.reduce((sum, t) => sum + Math.abs(t.amount), 0);
+    const avgTransaction = totalSpent / transactions.length;
+    const weeklySpending = totalSpent / 15; // assuming 15 weeks
+
+    const mealPlans = {
+      level_1: { cost: 2000, value: 2200 },
+      level_2: { cost: 2800, value: 3200 },
+      level_3: { cost: 3500, value: 4200 }
+    };
+
+    // Simple recommendation logic
+    let recommendedPlan = 'level_1';
+    if (weeklySpending > 250) recommendedPlan = 'level_3';
+    else if (weeklySpending > 150) recommendedPlan = 'level_2';
+
+    return res.json({
+      recommended_plan: recommendedPlan,
+      current_spending_pattern: {
+        weekly_average: weeklySpending,
+        projected_semester: weeklySpending * 15,
+        avg_transaction: avgTransaction
+      },
+      potential_savings: mealPlans[recommendedPlan as keyof typeof mealPlans].value - mealPlans[recommendedPlan as keyof typeof mealPlans].cost
+    });
+  } catch (error) {
+    console.error('Error generating meal plan recommendation:', error);
+    return res.status(500).json({
+      error: 'Failed to generate meal plan recommendation',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+
+// Best Times endpoint
+app.post('/ml/best-times', async (req: Request, res: Response) => {
+  try {
+    const { transactions } = req.body;
+    
+    if (!transactions) {
+      return res.status(400).json({
+        error: "Missing required parameters",
+        details: "transactions are required"
+      });
+    }
+
+    // Group transactions by location and hour
+    const locationTimes = transactions.reduce((acc: Record<string, any>, t) => {
+      const location = t.location;
+      const hour = t.timestamp.toDate().getHours();
+      const day = t.timestamp.toDate().toLocaleDateString('en-US', { weekday: 'long' });
+
+      if (!acc[location]) {
+        acc[location] = {
+          hourly_visits: Array(24).fill(0),
+          daily_visits: {},
+          total_visits: 0
+        };
+      }
+
+      acc[location].hourly_visits[hour]++;
+      acc[location].daily_visits[day] = (acc[location].daily_visits[day] || 0) + 1;
+      acc[location].total_visits++;
+
+      return acc;
+    }, {});
+
+    // Process data for each location
+    const bestTimes = Object.entries(locationTimes).reduce((acc: Record<string, any>, [location, data]) => {
+      const hourlyData = data.hourly_visits;
+      const dailyData = data.daily_visits;
+
+      // Find peak and quiet hours
+      const peakHours = hourlyData
+        .map((visits: number, hour: number) => ({ hour, visits }))
+        .sort((a: any, b: any) => b.visits - a.visits)
+        .slice(0, 3)
+        .map((item: any) => item.hour);
+
+      const quietHours = hourlyData
+        .map((visits: number, hour: number) => ({ hour, visits }))
+        .filter((item: any) => item.visits > 0)
+        .sort((a: any, b: any) => a.visits - b.visits)
+        .slice(0, 3)
+        .map((item: any) => item.hour);
+
+      acc[location] = {
+        peak_hours: peakHours,
+        quiet_hours: quietHours,
+        best_days: Object.entries(dailyData)
+          .sort(([,a]: any, [,b]: any) => a - b)
+          .slice(0, 3)
+          .map(([day]) => day),
+        hourly_busyness: hourlyData.map((visits: number) => 
+          visits / data.total_visits
+        )
+      };
+
+      return acc;
+    }, {});
+
+    return res.json(bestTimes);
+  } catch (error) {
+    console.error('Error generating best times:', error);
+    return res.status(500).json({
+      error: 'Failed to generate best times',
       details: error instanceof Error ? error.message : 'Unknown error'
     });
   }
