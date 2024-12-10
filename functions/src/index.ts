@@ -55,6 +55,19 @@ interface MLRecommendationRequest {
   currentMealPlan: string;
 }
 
+interface LocationData {
+  hourly_visits: number[];
+  daily_visits: Record<string, number>;
+  total_visits: number;
+}
+
+interface ProcessedLocationData {
+  peak_hours: number[];
+  quiet_hours: number[];
+  best_days: string[];
+  hourly_busyness: number[];
+}
+
 // Initialize Express app
 const app = express();
 
@@ -331,7 +344,7 @@ app.post('/ml/best-times', async (req: Request, res: Response) => {
     }
 
     // Group transactions by location and hour
-    const locationTimes = transactions.reduce((acc: Record<string, any>, t) => {
+    const locationTimes = transactions.reduce((acc: Record<string, any>, t: Transaction) => {
       const location = t.location;
       const hour = t.timestamp.toDate().getHours();
       const day = t.timestamp.toDate().toLocaleDateString('en-US', { weekday: 'long' });
@@ -351,45 +364,114 @@ app.post('/ml/best-times', async (req: Request, res: Response) => {
       return acc;
     }, {});
 
-    // Process data for each location
-    const bestTimes = Object.entries(locationTimes).reduce((acc: Record<string, any>, [location, data]) => {
-      const hourlyData = data.hourly_visits;
-      const dailyData = data.daily_visits;
-
+    const bestTimes = Object.entries(locationTimes).reduce<Record<string, ProcessedLocationData>>((acc, [location, data]) => {
+      const typedData = data as LocationData;
+      const hourlyData = typedData.hourly_visits;
+      const dailyData = typedData.daily_visits;
+  
       // Find peak and quiet hours
-      const peakHours = hourlyData
-        .map((visits: number, hour: number) => ({ hour, visits }))
-        .sort((a: any, b: any) => b.visits - a.visits)
-        .slice(0, 3)
-        .map((item: any) => item.hour);
-
-      const quietHours = hourlyData
-        .map((visits: number, hour: number) => ({ hour, visits }))
-        .filter((item: any) => item.visits > 0)
-        .sort((a: any, b: any) => a.visits - b.visits)
-        .slice(0, 3)
-        .map((item: any) => item.hour);
-
-      acc[location] = {
-        peak_hours: peakHours,
-        quiet_hours: quietHours,
-        best_days: Object.entries(dailyData)
-          .sort(([,a]: any, [,b]: any) => a - b)
+      const peakHours = Array.from(hourlyData.entries())
+          .map(([hour, visits]) => ({ hour, visits }))
+          .sort((a, b) => b.visits - a.visits)
           .slice(0, 3)
-          .map(([day]) => day),
-        hourly_busyness: hourlyData.map((visits: number) => 
-          visits / data.total_visits
-        )
+          .map(item => item.hour);
+  
+      const quietHours = Array.from(hourlyData.entries())
+          .map(([hour, visits]) => ({ hour, visits }))
+          .filter(item => item.visits > 0)
+          .sort((a, b) => a.visits - b.visits)
+          .slice(0, 3)
+          .map(item => item.hour);
+  
+      acc[location] = {
+          peak_hours: peakHours,
+          quiet_hours: quietHours,
+          best_days: Object.entries(dailyData)
+              .sort(([, a], [, b]) => (a as number) - (b as number))
+              .slice(0, 3)
+              .map(([day]) => day),
+          hourly_busyness: hourlyData.map(visits => 
+              visits / typedData.total_visits
+          )
       };
-
+  
       return acc;
-    }, {});
-
+  }, {});
     return res.json(bestTimes);
   } catch (error) {
     console.error('Error generating best times:', error);
     return res.status(500).json({
       error: 'Failed to generate best times',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    });
+  }
+});
+// In your index.js (backend)
+app.post('/ml/predictions', async (req: Request<any, any, MLPredictionRequest>, res: Response) => {
+  try {
+    const { transactions, currentBalance, mealPlanType } = req.body;
+    
+    if (!transactions || currentBalance === undefined || !mealPlanType) {
+      return res.status(400).json({
+        error: "Missing required parameters",
+        details: "transactions, currentBalance, and mealPlanType are required"
+      });
+    }
+
+    // Helper function to safely get Date object from timestamp
+    const getDateFromTimestamp = (timestamp: any): Date => {
+      if (timestamp instanceof Date) return timestamp;
+      if (typeof timestamp === 'string') return new Date(timestamp);
+      if (timestamp?.toDate instanceof Function) return timestamp.toDate();
+      if (timestamp?._seconds) return new Date(timestamp._seconds * 1000);
+      return new Date(timestamp);
+    };
+
+    // Calculate predictions based on transaction history
+    const totalSpent = transactions.reduce((sum, t) => sum + Math.abs(t.amount), 0);
+    const avgDailySpending = totalSpent / 30; // assuming 30 days of data
+    const daysRemaining = currentBalance / avgDailySpending;
+    
+    // Calculate predicted empty date
+    const predictedEmptyDate = new Date();
+    predictedEmptyDate.setDate(predictedEmptyDate.getDate() + Math.floor(daysRemaining));
+
+    // Calculate daily spending pattern safely
+    const dailySpending = transactions.reduce((acc: Record<string, number>, t) => {
+      try {
+        const date = getDateFromTimestamp(t.timestamp);
+        const day = date.toLocaleDateString('en-US', { weekday: 'long' });
+        acc[day] = (acc[day] || 0) + Math.abs(t.amount);
+      } catch (err) {
+        console.error('Error processing transaction:', t, err);
+      }
+      return acc;
+    }, {});
+
+    // Calculate risk level
+    let risk_level: 'LOW' | 'MEDIUM' | 'HIGH' = 'LOW';
+    if (daysRemaining < 30) {
+      risk_level = 'HIGH';
+    } else if (daysRemaining < 60) {
+      risk_level = 'MEDIUM';
+    }
+
+    // Calculate recommended daily budget
+    const semesterDaysRemaining = 120; // approximately 4 months
+    const recommendedDailyBudget = currentBalance / semesterDaysRemaining;
+
+    return res.json({
+      predicted_empty_date: predictedEmptyDate.toISOString(),
+      days_remaining: daysRemaining,
+      risk_level,
+      daily_spending_pattern: dailySpending,
+      recommended_daily_budget: recommendedDailyBudget
+    });
+
+  } catch (error) {
+    console.error('Error generating predictions:', error);
+    return res.status(500).json({
+      error: 'Failed to generate predictions',
       details: error instanceof Error ? error.message : 'Unknown error'
     });
   }

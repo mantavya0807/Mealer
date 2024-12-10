@@ -1,5 +1,8 @@
 import { useState, useEffect, useMemo } from 'react';
 import { db } from '../firebase/config';
+import { updateDoc, setDoc, doc, serverTimestamp } from 'firebase/firestore';
+import MealPlanSettingsForm from '../components/MealPlanSettingsForm';
+import { getAuth } from 'firebase/auth';
 import { MultiSelect } from '../components/ui/multi-select';
 import { collection, query, getDocs } from 'firebase/firestore';
 import { SpendingPredictions } from './SpendingPredictions';
@@ -16,11 +19,9 @@ import {
   Coffee,
   Utensils,
   Moon,
-  InfoIcon,
   AlertCircle,
   Info
 } from 'lucide-react';
-
 
 import { all } from 'axios';
 
@@ -48,39 +49,6 @@ const COMMONS_MAPPING = {
   'pollock': 'Pollock Commons'
 };
 
-const getBaseLocation = (location) => {
-  // Convert to lowercase for case-insensitive comparison
-  const loc = location.toLowerCase();
-  
-  // Check for commons first
-  for (const [key, value] of Object.entries(COMMONS_MAPPING)) {
-    if (loc.includes(key)) {
-      return value;
-    }
-  }
-  
-  // Extract first significant word (excluding common prefixes)
-  const words = loc.split(' ');
-  let baseWord = words[0];
-  
-  if (baseWord === 'up' || baseWord === '-up' || baseWord === 'the') {
-    baseWord = words[1] || words[0];
-  }
-  
-  // Special cases
-  if (loc.includes('starbucks')) return 'Starbucks';
-  if (loc.includes('chick') || loc.includes('cfa')) return 'Chick-fil-A';
-  if (baseWord.includes('edge')) return 'Edge Coffee';
-  if (baseWord.includes('louie')) return "Louie's";
-  
-  // If it's just "commons", return null to prevent generic "Commons" appearing
-  if (baseWord === 'commons') return null;
-  
-  // Capitalize first letter
-  return baseWord.charAt(0).toUpperCase() + baseWord.slice(1);
-};
-
-// Define meal times
 const MEAL_TIMES = {
   breakfast: { start: 6, end: 10 },
   lunch: { start: 11, end: 14 },
@@ -89,82 +57,138 @@ const MEAL_TIMES = {
 };
 
 export default function SpendingTrends() {
+  // State Variables
   const [availableUsers, setAvailableUsers] = useState([]);
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [timeframe, setTimeframe] = useState('monthly');
+  
+  // **New State Variables Added**
+  const [currentBalance, setCurrentBalance] = useState(0); // Initialize appropriately
+  const [mealPlanType, setMealPlanType] = useState('regular'); // Initialize appropriately
 
-  /// Fetch all PSU users that have transaction data
-useEffect(() => {
-  const fetchAvailablePSUUsers = async () => {
-    try {
-      // Fetch all searches first
-      const response = await fetch(
-        'http://127.0.0.1:5001/meal-plan-optimizer/us-central1/api/searches'
-      );
-  
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.error || `Request failed with status ${response.status}`);
-      }
-  
-      const data = await response.json();
-      
-      // Extract unique PSU emails from searches
-      const uniquePsuEmails = new Set(
-        data.searches.map(search => search.psuEmail)
-      );
-  
-      // Convert to format needed for MultiSelect
-      const psuUsers = Array.from(uniquePsuEmails).map(email => ({
-        id: email,
-        email: email
-      }));
-  
-      console.log('Found PSU users:', psuUsers);
-  
-      if (psuUsers.length > 0) {
-        setAvailableUsers(psuUsers);
-        setSelectedUsers([psuUsers[0].email]);
-      } else {
-        console.log('No PSU users found');
-        setError('No Penn State users found in the database');
-      }
-    } catch (err) {
-      console.error('Error fetching PSU users:', err);
-      setError('Failed to load available PSU users');
-    } finally {
-      setLoading(false);
+  // SpendingTrends.jsx
+const handleMealPlanUpdate = async ({ currentBalance, mealPlanType }) => {
+  try {
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    if (!user) {
+      throw new Error('You must be signed in to update settings');
     }
-  };
-  fetchAvailablePSUUsers();
-}, []);
 
-const InfoTooltip = ({ label, tooltip }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  
-  return (
-    <div className="relative inline-block">
-      <div 
-        className="inline-flex items-center cursor-help"
-        onMouseEnter={() => setIsVisible(true)}
-        onMouseLeave={() => setIsVisible(false)}
-      >
-        {label}
-        <Info className="h-4 w-4 ml-1 text-gray-400" />
-      </div>
-      
-      {isVisible && (
-        <div className="absolute z-50 w-64 p-3 text-sm bg-gray-800 text-gray-200 rounded-md shadow-lg border border-gray-700 -right-2 top-full mt-1">
-          <div className="absolute -top-2 right-3 w-4 h-4 bg-gray-800 border-t border-l border-gray-700 transform rotate-45" />
-          {tooltip}
-        </div>
-      )}
-    </div>
-  );
+    if (!selectedUsers.length) {
+      throw new Error('No user selected');
+    }
+
+    const userEmail = selectedUsers[0];
+
+    // Verify the logged-in user matches the selected user
+    if (user.email !== userEmail) {
+      throw new Error('You can only update your own settings');
+    }
+
+    // Create the user document if it doesn't exist
+    const userRef = doc(db, 'users', userEmail);
+    
+    await setDoc(userRef, {
+      currentBalance,
+      mealPlanType,
+      lastUpdated: serverTimestamp(),
+      email: userEmail // Add this to ensure the document exists
+    }, { merge: true }); // Use merge to update only specified fields
+
+    setCurrentBalance(currentBalance);
+    setMealPlanType(mealPlanType);
+
+  } catch (err) {
+    console.error('Error updating meal plan settings:', err);
+    // Show error to user
+    throw new Error(err.message || 'Failed to update settings');
+  }
 };
+
+  // Function to get base location
+  const getBaseLocation = (location) => {
+    // Convert to lowercase for case-insensitive comparison
+    const loc = location.toLowerCase();
+    
+    // Check for commons first
+    for (const [key, value] of Object.entries(COMMONS_MAPPING)) {
+      if (loc.includes(key)) {
+        return value;
+      }
+    }
+    
+    // Extract first significant word (excluding common prefixes)
+    const words = loc.split(' ');
+    let baseWord = words[0];
+    
+    if (baseWord === 'up' || baseWord === '-up' || baseWord === 'the') {
+      baseWord = words[1] || words[0];
+    }
+    
+    // Special cases
+    if (loc.includes('starbucks')) return 'Starbucks';
+    if (loc.includes('chick') || loc.includes('cfa')) return 'Chick-fil-A';
+    if (baseWord.includes('edge')) return 'Edge Coffee';
+    if (baseWord.includes('louie')) return "Louie's";
+    
+    // If it's just "commons", return null to prevent generic "Commons" appearing
+    if (baseWord === 'commons') return null;
+    
+    // Capitalize first letter
+    return baseWord.charAt(0).toUpperCase() + baseWord.slice(1);
+  };
+
+  // Fetch all PSU users that have transaction data
+  useEffect(() => {
+    const fetchAvailablePSUUsers = async () => {
+      try {
+        // Fetch all searches first
+        const response = await fetch(
+          'http://127.0.0.1:5001/meal-plan-optimizer/us-central1/api/searches'
+        );
+    
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({}));
+          throw new Error(errorData.error || `Request failed with status ${response.status}`);
+        }
+    
+        const data = await response.json();
+        
+        // Extract unique PSU emails from searches
+        const uniquePsuEmails = new Set(
+          data.searches.map(search => search.psuEmail)
+        );
+    
+        // Convert to format needed for MultiSelect
+        const psuUsers = Array.from(uniquePsuEmails).map(email => ({
+          id: email,
+          email: email
+        }));
+    
+        console.log('Found PSU users:', psuUsers);
+    
+        if (psuUsers.length > 0) {
+          setAvailableUsers(psuUsers);
+          setSelectedUsers([psuUsers[0].email]);
+        } else {
+          console.log('No PSU users found');
+          setError('No Penn State users found in the database');
+        }
+      } catch (err) {
+        console.error('Error fetching PSU users:', err);
+        setError('Failed to load available PSU users');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchAvailablePSUUsers();
+  }, []);
+
   // Fetch transactions whenever selected users change
   useEffect(() => {
     const fetchTransactions = async () => {
@@ -206,8 +230,8 @@ const InfoTooltip = ({ label, tooltip }) => {
     fetchTransactions();
   }, [selectedUsers]);
 
-
-    const analytics = useMemo(() => {
+  // Analytics Calculation
+  const analytics = useMemo(() => {
     if (!transactions.length) return null;
 
     try {
@@ -216,7 +240,7 @@ const InfoTooltip = ({ label, tooltip }) => {
         const { amount, accountType, location } = transaction;
         const isMarket = location.toLowerCase().includes('market');
         const isCentral = location.toLowerCase().includes('hub') || 
-                         location.toLowerCase().includes('central');
+                           location.toLowerCase().includes('central');
 
         if (accountType === 'CampusMealPlan') {
           if (isMarket || isCentral) {
@@ -250,10 +274,10 @@ const InfoTooltip = ({ label, tooltip }) => {
         
         // Skip if location is null
         if (!baseLocation) return;
-  
+
         const day = DAYS[t.timestamp.getDay()];
         const hour = t.timestamp.getHours();
-  
+
         // Update totals
         totalActualCost += actualCost;
         if (t.accountType === 'CampusMealPlan' && 
@@ -263,30 +287,30 @@ const InfoTooltip = ({ label, tooltip }) => {
         }
 
         // Update daily spending
-      dailySpending[day] = (dailySpending[day] || 0) + Math.abs(t.amount);
+        dailySpending[day] = (dailySpending[day] || 0) + Math.abs(t.amount);
 
-      // Update category breakdown
-      const category = t.category || 'Uncategorized';
-      categoryBreakdown[category] = (categoryBreakdown[category] || 0) + Math.abs(t.amount);
+        // Update category breakdown
+        const category = t.category || 'Uncategorized';
+        categoryBreakdown[category] = (categoryBreakdown[category] || 0) + Math.abs(t.amount);
 
-      // Update location spending
-      locationSpending[baseLocation] = (locationSpending[baseLocation] || 0) + 
-        Math.abs(t.amount);
+        // Update location spending
+        locationSpending[baseLocation] = (locationSpending[baseLocation] || 0) + 
+          Math.abs(t.amount);
 
-      // Update meal time spending
-      for (const [mealTime, timeRange] of Object.entries(MEAL_TIMES)) {
-        if (hour >= timeRange.start && hour < timeRange.end) {
-          if (!mealTimeSpending[mealTime][baseLocation]) {
-            mealTimeSpending[mealTime][baseLocation] = {
-              visits: 0,
-              totalSpent: 0
-            };
+        // Update meal time spending
+        for (const [mealTime, timeRange] of Object.entries(MEAL_TIMES)) {
+          if (hour >= timeRange.start && hour < timeRange.end) {
+            if (!mealTimeSpending[mealTime][baseLocation]) {
+              mealTimeSpending[mealTime][baseLocation] = {
+                visits: 0,
+                totalSpent: 0
+              };
+            }
+            mealTimeSpending[mealTime][baseLocation].visits++;
+            mealTimeSpending[mealTime][baseLocation].totalSpent += Math.abs(t.amount);
           }
-          mealTimeSpending[mealTime][baseLocation].visits++;
-          mealTimeSpending[mealTime][baseLocation].totalSpent += Math.abs(t.amount);
         }
-      }
-    });
+      });
 
       // Format meal preferences
       const mealPreferences = {};
@@ -337,9 +361,32 @@ const InfoTooltip = ({ label, tooltip }) => {
     }
   }, [transactions]);
 
+  // InfoTooltip Component
+  const InfoTooltip = ({ label, tooltip }) => {
+    const [isVisible, setIsVisible] = useState(false);
     
+    return (
+      <div className="relative inline-block">
+        <div 
+          className="inline-flex items-center cursor-help"
+          onMouseEnter={() => setIsVisible(true)}
+          onMouseLeave={() => setIsVisible(false)}
+        >
+          {label}
+          <Info className="h-4 w-4 ml-1 text-gray-400" />
+        </div>
+        
+        {isVisible && (
+          <div className="absolute z-50 w-64 p-3 text-sm bg-gray-800 text-gray-200 rounded-md shadow-lg border border-gray-700 -right-2 top-full mt-1">
+            <div className="absolute -top-2 right-3 w-4 h-4 bg-gray-800 border-t border-l border-gray-700 transform rotate-45" />
+            {tooltip}
+          </div>
+        )}
+      </div>
+    );
+  };
 
-
+  // Render Loading State
   if (loading) {
     return (
       <div className="p-6 flex items-center justify-center">
@@ -349,6 +396,7 @@ const InfoTooltip = ({ label, tooltip }) => {
     );
   }
 
+  // Render Error State
   if (error) {
     return (
       <div className="p-6 bg-red-500/10 border border-red-500 rounded-lg text-red-500">
@@ -357,180 +405,186 @@ const InfoTooltip = ({ label, tooltip }) => {
     );
   }
 
-
+  // Main Render
   return (
     <div className="p-6 space-y-6">
       <div className="flex justify-between items-center">
-  <h1 className="text-2xl font-bold text-white">Spending Trends</h1>
-  {availableUsers.length > 0 ? (
-    <MultiSelect
-      options={availableUsers.map(user => ({
-        value: user.email,
-        label: user.email
-      }))}
-      value={selectedUsers.map(email => ({
-        value: email,
-        label: email
-      }))}
-      onChange={(selected) => setSelectedUsers(selected.map(s => s.value))}
-      className="w-96"
-      placeholder="Select users to compare..."
-    />
-  ) : (
-    <div className="text-gray-400">No Penn State users available</div>
-  )}
-</div>
+        <h1 className="text-2xl font-bold text-white">Spending Trends</h1>
+        {availableUsers.length > 0 ? (
+          <MultiSelect
+            options={availableUsers.map(user => ({
+              value: user.email,
+              label: user.email
+            }))}
+            value={selectedUsers.map(email => ({
+              value: email,
+              label: email
+            }))}
+            onChange={(selected) => setSelectedUsers(selected.map(s => s.value))}
+            className="w-96"
+            placeholder="Select users to compare..."
+          />
+        ) : (
+          <div className="text-gray-400">No Penn State users available</div>
+        )}
+      </div>
 
-{/* Show empty state with more context */}
-{!loading && !error && (!transactions || transactions.length === 0) && (
-  <div className="text-center p-6 text-gray-400">
-    {availableUsers.length === 0 
-      ? "No Penn State users found in the database"
-      : "No transaction data available. Please select a user to view their spending trends."
-    }
-  </div>
-)}
-  
+      {/* Show empty state with more context */}
+      {!loading && !error && (!transactions || transactions.length === 0) && (
+        <div className="text-center p-6 text-gray-400">
+          {availableUsers.length === 0 
+            ? "No Penn State users found in the database"
+            : "No transaction data available. Please select a user to view their spending trends."
+          }
+        </div>
+      )}
+
       {/* Show analytics only when we have data */}
       {!loading && !error && analytics && (
         <>
-        <SpendingPredictions 
+          <SpendingPredictions 
             transactions={transactions}
             currentBalance={currentBalance}
             mealPlanType={mealPlanType}
-        />
-                {/* Key Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-gray-800 p-6 rounded-lg">
-          <div className="flex items-center">
-            <DollarSign className="h-8 w-8 text-green-400" />
-            <div className="ml-3">
-              <p className="text-sm text-gray-400">Total Spending</p>
-              <p className="text-2xl font-bold text-white">
-                ${analytics.totalSpending.toFixed(2)}
-              </p>
+          />
+          
+          {/* Key Metrics */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="bg-gray-800 p-6 rounded-lg">
+              <div className="flex items-center">
+                <DollarSign className="h-8 w-8 text-green-400" />
+                <div className="ml-3">
+                  <p className="text-sm text-gray-400">Total Spending</p>
+                  <p className="text-2xl font-bold text-white">
+                    ${analytics.totalSpending.toFixed(2)}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gray-800 p-6 rounded-lg">
+              <div className="flex items-center">
+                <TrendingUp className="h-8 w-8 text-blue-400" />
+                <div className="ml-3">
+                  <p className="text-sm text-gray-400">Avg Transaction</p>
+                  <p className="text-2xl font-bold text-white">
+                    ${analytics.averageTransaction.toFixed(2)}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gray-800 p-6 rounded-lg">
+              <div className="flex items-center">
+                <Clock className="h-8 w-8 text-purple-400" />
+                <div className="ml-3">
+                  <p className="text-sm text-gray-400">Busiest Day</p>
+                  <p className="text-2xl font-bold text-white">
+                    {analytics.busiestDay}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gray-800 p-6 rounded-lg">
+              <div className="flex items-center">
+                <Calendar className="h-8 w-8 text-orange-400" />
+                <div className="ml-3">
+                  <p className="text-sm text-gray-400">Top Category</p>
+                  <p className="text-2xl font-bold text-white">
+                    {analytics.topCategory}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="bg-gray-800 p-6 rounded-lg">
-          <div className="flex items-center">
-            <TrendingUp className="h-8 w-8 text-blue-400" />
-            <div className="ml-3">
-              <p className="text-sm text-gray-400">Avg Transaction</p>
-              <p className="text-2xl font-bold text-white">
-                ${analytics.averageTransaction.toFixed(2)}
-              </p>
+          {/* Meal Plan Settings Form */}
+          <MealPlanSettingsForm
+            currentBalance={currentBalance}
+            mealPlanType={mealPlanType}
+            onUpdate={handleMealPlanUpdate}
+            className="mb-6"
+          />
+
+          {/* Charts */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Daily Spending Pattern */}
+            <div className="bg-gray-800 p-6 rounded-lg h-[400px]">
+              <h2 className="text-lg font-semibold text-white mb-4">Daily Spending Pattern</h2>
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={DAYS.map(day => ({
+                  name: day,
+                  amount: analytics.dailySpending[day] || 0
+                }))}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                  <XAxis dataKey="name" stroke="#9CA3AF" fontSize={12} />
+                  <YAxis stroke="#9CA3AF" fontSize={12} />
+                  <Tooltip 
+                    contentStyle={{ backgroundColor: '#1F2937', border: 'none' }}
+                    labelStyle={{ color: '#9CA3AF' }}
+                    formatter={(value) => `$${value.toFixed(2)}`}
+                  />
+                  <Bar dataKey="amount" fill="#8884d8" />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+
+            {/* Spending by Category */}
+            <div className="bg-gray-800 p-6 rounded-lg h-[400px]">
+              <h2 className="text-lg font-semibold text-white mb-4">Spending by Category</h2>
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={Object.entries(analytics.categoryBreakdown).map(([name, value]) => ({
+                      name,
+                      value
+                    }))}
+                    cx="50%"
+                    cy="50%"
+                    labelLine={false}
+                    label={({ name, percent }) => `${name} (${(percent * 100).toFixed(0)}%)`}
+                    outerRadius={130}
+                    fill="#8884d8"
+                    dataKey="value"
+                  >
+                    {Object.entries(analytics.categoryBreakdown).map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                  </Pie>
+                  <Tooltip 
+                    contentStyle={{ backgroundColor: '#1F2937', border: 'none' }}
+                    formatter={(value) => `$${value.toFixed(2)}`}
+                  />
+                </PieChart>
+              </ResponsiveContainer>
             </div>
           </div>
-        </div>
 
-        <div className="bg-gray-800 p-6 rounded-lg">
-          <div className="flex items-center">
-            <Clock className="h-8 w-8 text-purple-400" />
-            <div className="ml-3">
-              <p className="text-sm text-gray-400">Busiest Day</p>
-              <p className="text-2xl font-bold text-white">
-                {analytics.busiestDay}
-              </p>
+          {/* Top Locations */}
+          <div className="bg-gray-800 p-6 rounded-lg">
+            <div className="flex items-center">
+              <TrendingUp className="h-8 w-8 text-blue-400" />
+              <div className="ml-3">
+                <p className="text-sm text-gray-400">Top Locations</p>
+                <p className="text-2xl font-bold text-white">Top 5</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+              {analytics.topLocations.map((location, index) => (
+                <div key={location.name} className="bg-gray-700 p-4 rounded-lg">
+                  <p className="text-gray-400 text-sm">#{index + 1}</p>
+                  <p className="text-white font-medium mt-1">{location.name}</p>
+                  <p className="text-indigo-400 text-lg mt-1">
+                    ${location.amount.toFixed(2)}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
 
-        <div className="bg-gray-800 p-6 rounded-lg">
-          <div className="flex items-center">
-            <Calendar className="h-8 w-8 text-orange-400" />
-            <div className="ml-3">
-              <p className="text-sm text-gray-400">Top Category</p>
-              <p className="text-2xl font-bold text-white">
-                {analytics.topCategory}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-  
-             {/* Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Daily Spending Pattern */}
-        <div className="bg-gray-800 p-6 rounded-lg h-[400px]">
-          <h2 className="text-lg font-semibold text-white mb-4">Daily Spending Pattern</h2>
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={DAYS.map(day => ({
-              name: day,
-              amount: analytics.dailySpending[day] || 0
-            }))}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-              <XAxis dataKey="name" stroke="#9CA3AF" fontSize={12} />
-              <YAxis stroke="#9CA3AF" fontSize={12} />
-              <Tooltip 
-                contentStyle={{ backgroundColor: '#1F2937', border: 'none' }}
-                labelStyle={{ color: '#9CA3AF' }}
-                formatter={(value) => `$${value.toFixed(2)}`}
-              />
-              <Bar dataKey="amount" fill="#8884d8" />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-
-        {/* Spending by Category */}
-        <div className="bg-gray-800 p-6 rounded-lg h-[400px]">
-          <h2 className="text-lg font-semibold text-white mb-4">Spending by Category</h2>
-          <ResponsiveContainer width="100%" height="100%">
-            <PieChart>
-              <Pie
-                data={Object.entries(analytics.categoryBreakdown).map(([name, value]) => ({
-                  name,
-                  value
-                }))}
-                cx="50%"
-                cy="50%"
-                labelLine={false}
-                label={({ name, percent }) => `${name} (${(percent * 100).toFixed(0)}%)`}
-                outerRadius={130}
-                fill="#8884d8"
-                dataKey="value"
-              >
-                {Object.entries(analytics.categoryBreakdown).map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                ))}
-              </Pie>
-              <Tooltip 
-                contentStyle={{ backgroundColor: '#1F2937', border: 'none' }}
-                formatter={(value) => `$${value.toFixed(2)}`}
-              />
-            </PieChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
-
-     
-      {/* Top Locations */}
-      <div className="bg-gray-800 p-6 rounded-lg">
-        <div className="flex items-center">
-          <TrendingUp className="h-8 w-8 text-blue-400" />
-          <div className="ml-3">
-            <p className="text-sm text-gray-400">Top Locations</p>
-            <p className="text-2xl font-bold text-white">Top 5</p>
-          </div>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-          {analytics.topLocations.map((location, index) => (
-            <div key={location.name} className="bg-gray-700 p-4 rounded-lg">
-              <p className="text-gray-400 text-sm">#{index + 1}</p>
-              <p className="text-white font-medium mt-1">{location.name}</p>
-              <p className="text-indigo-400 text-lg mt-1">
-                ${location.amount.toFixed(2)}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-
- {/* Discount Analysis */}
-           {/* Discount Analysis with updated tooltips */}
-           <div className="bg-gray-800 p-6 rounded-lg">
+          {/* Discount Analysis */}
+          <div className="bg-gray-800 p-6 rounded-lg">
             <h2 className="text-lg font-semibold text-white mb-4">Discount Analysis</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="bg-gray-700 p-4 rounded-lg">
@@ -618,4 +672,4 @@ const InfoTooltip = ({ label, tooltip }) => {
       )}
     </div>
   );
-} 
+}

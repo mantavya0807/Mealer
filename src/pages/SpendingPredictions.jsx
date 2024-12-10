@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MLService } from '../services/mlService';
+import { MLService } from '../services/MLServices.ts';
 import { 
     Calendar,
     AlertTriangle,
@@ -13,28 +13,45 @@ export const SpendingPredictions = ({ transactions, currentBalance, mealPlanType
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const fetchPredictions = async () => {
-            try {
-                setLoading(true);
-                const results = await MLService.getPredictions(
-                    transactions,
-                    currentBalance,
-                    mealPlanType
-                );
-                setPredictions(results);
-            } catch (err) {
-                setError('Failed to load predictions');
-                console.error(err);
-            } finally {
-                setLoading(false);
+    // Update your useEffect in SpendingPredictions.jsx
+useEffect(() => {
+    const fetchPredictions = async () => {
+        try {
+            if (!transactions || transactions.length === 0) {
+                console.warn('No transactions available');
+                return;
             }
-        };
 
-        if (transactions.length > 0) {
-            fetchPredictions();
+            if (currentBalance === undefined || currentBalance === null) {
+                console.warn('Current balance not set');
+                return;
+            }
+
+            if (!mealPlanType) {
+                console.warn('Meal plan type not set');
+                return;
+            }
+
+            setLoading(true);
+            setError(null);
+
+            const results = await MLService.getPredictions(
+                transactions,
+                parseFloat(currentBalance),
+                mealPlanType
+            );
+            
+            setPredictions(results);
+        } catch (err) {
+            setError(err.message || 'Failed to load predictions');
+            console.error('Prediction Error:', err);
+        } finally {
+            setLoading(false);
         }
-    }, [transactions, currentBalance, mealPlanType]);
+    };
+
+    fetchPredictions();
+}, [transactions, currentBalance, mealPlanType]);
 
     if (loading) {
         return <div className="animate-pulse">Loading predictions...</div>;
