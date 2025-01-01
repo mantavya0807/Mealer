@@ -1,70 +1,108 @@
-# Getting Started with Create React App
+# Penn State Meal Plan Optimizer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A web application that helps Penn State students analyze and optimize their campus meal plan spending through automated data collection, real-time analytics, and personalized recommendations.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Automated Data Collection**: Securely fetches transaction data from Penn State's dining portal
+- **Spending Analytics**: Real-time visualization of spending patterns and trends
+- **Meal Plan Optimization**: Personalized recommendations for maximizing meal plan value
+- **Multi-User Comparison**: Compare spending patterns with other users
+- **Discount Analysis**: Track savings and identify opportunities for better value
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Frontend
+- React with TypeScript
+- Tailwind CSS for styling
+- Recharts for data visualization
+- Firebase Authentication
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Backend
+- Firebase Cloud Functions
+- Firestore Database
+- Node.js with TypeScript
+- Puppeteer for automated data collection
 
-### `npm test`
+## Getting Started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prerequisites
+- Node.js (v18 or higher)
+- npm or yarn
+- Firebase CLI
+- A Penn State account
 
-### `npm run build`
+### Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the repository
+```bash
+git clone https://github.com/yourusername/meal-plan-optimizer.git
+cd meal-plan-optimizer
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Install dependencies
+```bash
+npm install
+cd functions
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Set up Firebase
+```bash
+npm install -g firebase-tools
+firebase login
+firebase init
+```
 
-### `npm run eject`
+4. Create a `.env` file in the root directory with your Firebase config:
+```
+REACT_APP_FIREBASE_API_KEY=your_api_key
+REACT_APP_FIREBASE_AUTH_DOMAIN=your_auth_domain
+REACT_APP_FIREBASE_PROJECT_ID=your_project_id
+REACT_APP_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+REACT_APP_FIREBASE_APP_ID=your_app_id
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+5. Start the development server
+```bash
+npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+6. In a separate terminal, start the Firebase emulators
+```bash
+cd functions
+npm run serve
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Usage
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. Sign in with your Penn State credentials
+2. Enter your verification code when prompted
+3. Select your date range for transaction analysis
+4. View your personalized spending analytics and recommendations
+5. Compare your spending patterns with other users
+6. Download transaction history or view detailed reports
 
-## Learn More
+## Contributing
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Security
 
-### Code Splitting
+- All user credentials are securely handled and never stored
+- Multi-factor authentication is required for data access
+- Firebase security rules protect user data
+- All API requests are authenticated and rate-limited
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+- Firebase team for their excellent documentation
+- The React and TypeScript communities
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Support
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+For support, email your-email@psu.edu or open an issue in the repository.
