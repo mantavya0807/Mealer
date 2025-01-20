@@ -105,4 +105,4 @@ npm run serve
 
 ## Support
 
-For support, email your-email@psu.edu or open an issue in the repository.
+For support, email mbm6898@psu.edu or open an issue in the repository.
