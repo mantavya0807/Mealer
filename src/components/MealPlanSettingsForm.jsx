@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
+import { Info } from 'lucide-react';
 
 const MealPlanSettingsForm = ({ 
   currentBalance, 
   mealPlanType, 
   onUpdate,
+  planOptions = {},
   className = '' 
 }) => {
   const [balance, setBalance] = useState(currentBalance?.toString() || '');
   const [planType, setPlanType] = useState(mealPlanType || '');
   const [error, setError] = useState('');
   const [isUpdating, setIsUpdating] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    setShowSuccess(false);
 
     const numBalance = parseFloat(balance);
     if (isNaN(numBalance) || numBalance < 0) {
@@ -34,34 +34,31 @@ const MealPlanSettingsForm = ({
         currentBalance: numBalance,
         mealPlanType: planType
       });
-      setShowSuccess(true);
-      setTimeout(() => setShowSuccess(false), 3000);
     } catch (err) {
-      setError('Failed to update meal plan settings');
+      setError(err.message || 'Failed to update meal plan settings');
     } finally {
       setIsUpdating(false);
     }
   };
 
   return (
-    <div className={`${className} bg-gray-800 p-6 rounded-lg max-w-md w-full`}>
-      <h2 className="text-xl font-bold text-white mb-4">Meal Plan Settings</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        {error && (
-          <div className="bg-red-500/10 border border-red-500 text-red-500 p-3 rounded">
-            {error}
-          </div>
-        )}
-        
-        {showSuccess && (
-          <div className="bg-green-500/10 border border-green-500 text-green-500 p-3 rounded">
-            Settings updated successfully!
-          </div>
-        )}
+    <div className={`${className} bg-gray-700 p-6 rounded-lg max-w-md w-full`}>
+      <h3 className="text-white font-medium mb-4">Update Your Settings</h3>
+      
+      {error && (
+        <div className="mb-4 p-3 bg-red-500/10 border border-red-500 rounded-lg text-red-500 text-sm">
+          {error}
+        </div>
+      )}
 
+      <form onSubmit={handleSubmit} className="space-y-6">
         <div className="space-y-2">
           <label className="block text-sm font-medium text-gray-200">
             Current Balance
+            <div className="inline-flex items-center ml-2 text-gray-400 text-xs">
+              <Info className="h-3.5 w-3.5 mr-1" />
+              <span>Enter your remaining meal plan balance</span>
+            </div>
           </label>
           <div className="relative">
             <span className="absolute left-3 top-2.5 text-gray-400">$</span>
@@ -71,7 +68,7 @@ const MealPlanSettingsForm = ({
               min="0"
               value={balance}
               onChange={(e) => setBalance(e.target.value)}
-              className="w-full bg-gray-700 border border-gray-600 rounded px-7 py-2 text-white focus:outline-none focus:border-blue-500"
+              className="w-full bg-gray-600 border border-gray-500 rounded px-7 py-2 text-white focus:outline-none focus:border-blue-500"
               placeholder="0.00"
             />
           </div>
@@ -84,12 +81,12 @@ const MealPlanSettingsForm = ({
           <select
             value={planType}
             onChange={(e) => setPlanType(e.target.value)}
-            className="w-full bg-gray-700 border border-gray-600 rounded px-3 py-2 text-white focus:outline-none focus:border-blue-500"
+            className="w-full bg-gray-600 border border-gray-500 rounded px-3 py-2 text-white focus:outline-none focus:border-blue-500"
           >
             <option value="">Select a meal plan</option>
-            <option value="level1">Level 1 ($2000/semester)</option>
-            <option value="level2">Level 2 ($2800/semester)</option>
-            <option value="level3">Level 3 ($3500/semester)</option>
+            <option value="level1">Level 1 ($2,500/semester)</option>
+            <option value="level2">Level 2 ($3,100/semester)</option>
+            <option value="level3">Level 3 ($3,700/semester)</option>
             <option value="commuter">Commuter ($500/semester)</option>
             <option value="custom">Custom Plan</option>
           </select>
@@ -98,7 +95,7 @@ const MealPlanSettingsForm = ({
         <button 
           type="submit" 
           disabled={isUpdating}
-          className="w-full bg-blue-500 hover:bg-blue-600 disabled:bg-blue-500/50 text-white py-2 px-4 rounded"
+          className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-500/50 text-white py-2 px-4 rounded transition-colors"
         >
           {isUpdating ? 'Updating...' : 'Save Changes'}
         </button>

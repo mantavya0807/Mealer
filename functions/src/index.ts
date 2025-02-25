@@ -8,6 +8,9 @@ import { processAndUploadTransactions } from './dataProcessor/transactionProcess
 import { logSearch, getSearchHistory, getSearchDetails } from './searchHistory/searchHistoryHandler.js';
 import { getAnalytics } from './analytics/transactionAnalytics.js';
 import { Timestamp } from 'firebase-admin/firestore';
+import { getMealRecommendations } from './ml/mealRecommendationService.js';
+import { predictSpendingPatterns } from './ml/spendingPatternsService.js';
+import { getMealPlanAssistance } from './ml/mealPlanAssistant.js';
 
 // Interfaces
 interface Transaction {
@@ -474,6 +477,36 @@ app.post('/ml/predictions', async (req: Request<any, any, MLPredictionRequest>, 
       error: 'Failed to generate predictions',
       details: error instanceof Error ? error.message : 'Unknown error'
     });
+  }
+});
+// ML Endpoints
+app.post('/ml/meal-recommendations', async (req, res) => {
+  try {
+    const result = await getMealRecommendations(req.body);
+    res.json(result);
+  } catch (error) {
+    console.error('Error getting meal recommendations:', error);
+    res.status(500).json({ error: 'Failed to get meal recommendations' });
+  }
+});
+
+app.post('/ml/spending-predictions', async (req, res) => {
+  try {
+    const result = await predictSpendingPatterns(req.body);
+    res.json(result);
+  } catch (error) {
+    console.error('Error predicting spending patterns:', error);
+    res.status(500).json({ error: 'Failed to predict spending patterns' });
+  }
+});
+
+app.post('/ml/assistant', async (req, res) => {
+  try {
+    const result = await getMealPlanAssistance(req.body);
+    res.json(result);
+  } catch (error) {
+    console.error('Error getting meal plan assistance:', error);
+    res.status(500).json({ error: 'Failed to get meal plan assistance' });
   }
 });
 

@@ -1,3 +1,4 @@
+// App.js with ML routes added
 import logo from './logo.svg';
 import './App.css';
 import React from 'react';
@@ -14,6 +15,10 @@ import PastSearches from './pages/PastSearches';
 import SpendingTrends from './pages/SpendingTrends';
 import Preferences from './pages/Preferences';
 
+// Import new ML-powered pages
+import MealRecommendationsPage from './pages/MealRecommendationsPage';
+import SpendingPredictionsPage from './pages/SpendingPredictionsPage';
+import AssistantPage from './pages/AssistantPage';
 
 function App() {
   const [user, loading] = useAuthState(auth);
@@ -62,6 +67,38 @@ function App() {
               <Preferences />
             </ProtectedRoute>
           }
+        />
+        
+        {/* ML-Powered Routes */}
+        <Route
+          path="/meal-recommendations"
+          element={
+            <ProtectedRoute>
+              <MealRecommendationsPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/spending-predictions"
+          element={
+            <ProtectedRoute>
+              <SpendingPredictionsPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/assistant"
+          element={
+            <ProtectedRoute>
+              <AssistantPage />
+            </ProtectedRoute>
+          }
+        />
+        
+        {/* Catch-all redirect */}
+        <Route
+          path="*"
+          element={<Navigate to="/" replace />}
         />
       </Routes>
     </Router>
