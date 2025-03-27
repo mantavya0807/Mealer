@@ -3799,3 +3799,31 @@ Issues? Report them at https://github.com/firebase/firebase-tools/issues and att
 [info] i  functions: Loaded environment variables from .env. 
 [debug] [2025-03-27T20:30:25.612Z] Could not find functions.yaml. Must use http discovery
 [debug] [2025-03-27T20:30:25.620Z] Found firebase-functions binary at 'D:\Mealer\Mealer\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8681
+
+[info] Project ID: meal-plan-optimizer
+
+[info] Client Email: firebase-adminsdk-zmjlq@meal-plan-optimizer.iam.gserviceaccount.com
+
+[info] Firebase Admin initialized successfully
+
+[debug] [2025-03-27T20:30:28.109Z] Got response from /__/functions.yaml {"endpoints":{"api":{"availableMemoryMb":null,"timeoutSeconds":540,"minInstances":0,"maxInstances":100,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","region":["us-central1"],"labels":{},"httpsTrigger":{},"entryPoint":"api"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[info] +  functions: Loaded functions definitions from source: api. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: api."}}
+[info] +  functions[us-central1-api]: http function initialized (http://127.0.0.1:5001/meal-plan-optimizer/us-central1/api). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/meal-plan-optimizer/us-central1/api)."}}
+[debug] [2025-03-27T20:30:28.178Z] Could not find VSCode notification endpoint: FetchError: request to http://localhost:40001/vscode/notify failed, reason: connect ECONNREFUSED ::1:40001. If you are not running the Firebase Data Connect VSCode extension, this is expected and not an issue.
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+│ i  View Emulator UI at http://127.0.0.1:4000/               │
+└─────────────────────────────────────────────────────────────┘
+
+┌───────────┬────────────────┬─────────────────────────────────┐
+│ Emulator  │ Host:Port      │ View in Emulator UI             │
+├───────────┼────────────────┼─────────────────────────────────┤
+│ Functions │ 127.0.0.1:5001 │ http://127.0.0.1:4000/functions │
+└───────────┴────────────────┴─────────────────────────────────┘
+  Emulator Hub running at 127.0.0.1:4400
+  Other reserved ports: 4500
+
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 
