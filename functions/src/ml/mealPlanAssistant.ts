@@ -1,10 +1,11 @@
 // functions/src/ml/mealPlanAssistant.ts
 import { getFirestore } from 'firebase-admin/firestore';
-import { OpenAI } from 'openai';
+// Import OpenAI directly
+import OpenAI from 'openai';
 
 // Initialize OpenAI client
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
+  apiKey: process.env.OPENAI_API_KEY || '',
 });
 
 // Context data for Penn State dining and meal plans
@@ -174,6 +175,14 @@ interface AssistantResponse {
   followup_questions?: string[];
 }
 
+// Interface for user data
+interface UserData {
+  mealPlanType: string;
+  currentBalance: number;
+  frequentLocations: string[];
+  dietaryRestrictions: string[];
+}
+
 /**
  * Process a user query about meal plans using RAG approach
  */
@@ -221,7 +230,7 @@ Provide a helpful, concise answer based on the context provided. If you're unsur
 Include 2-3 relevant follow-up questions that the user might want to ask next.
 `;
 
-    // Call OpenAI API to generate a response
+    // Call OpenAI API to generate a response using the modern API
     const response = await openai.chat.completions.create({
       model: "gpt-4-turbo",
       messages: [
@@ -242,7 +251,7 @@ Include 2-3 relevant follow-up questions that the user might want to ask next.
     });
     
     // Extract the assistant's response
-    const assistantResponse = response.choices[0].message.content;
+    const assistantResponse = response.choices[0].message.content || "Sorry, I couldn't generate a response.";
     
     // Generate follow-up questions if not included in the response
     const followupQuestions = extractFollowUpQuestions(assistantResponse) || [
@@ -287,7 +296,7 @@ function extractFollowUpQuestions(text: string): string[] | undefined {
 /**
  * Get user-specific data for context enrichment
  */
-async function getUserData(userId: string) {
+async function getUserData(userId: string): Promise<UserData | null> {
   try {
     const db = getFirestore();
     
@@ -297,7 +306,7 @@ async function getUserData(userId: string) {
       return null;
     }
     
-    const userData = userDoc.data();
+    const userData = userDoc.data() || {};
     
     // Get transaction history to identify frequent locations
     const transactionsRef = db.collection(`users/${userId}/transactions`);
@@ -308,7 +317,9 @@ async function getUserData(userId: string) {
     transactionsSnapshot.forEach(doc => {
       const data = doc.data();
       const location = data.location;
-      locationCounts[location] = (locationCounts[location] || 0) + 1;
+      if (location) {
+        locationCounts[location] = (locationCounts[location] || 0) + 1;
+      }
     });
     
     // Get top 3 frequent locations
@@ -320,7 +331,7 @@ async function getUserData(userId: string) {
     return {
       mealPlanType: userData.mealPlanType || 'unknown',
       currentBalance: userData.currentBalance || 0,
-      frequentLocations,
+      frequentLocations: frequentLocations || [],
       dietaryRestrictions: userData.dietaryRestrictions || []
     };
   } catch (error) {

@@ -1,9 +1,21 @@
 // functions/src/ml/spendingPatternsService.ts
 import { getFirestore } from 'firebase-admin/firestore';
-import { SpendingPatternPredictor } from './spendingPatternPredictor';
+import { spawn } from 'child_process';
+import * as path from 'path';
 
-// Initialize a singleton instance of the predictor
-let patternPredictor: SpendingPatternPredictor | null = null;
+// Define an interface for the predictor with Promise return types
+interface SpendingPatternPredictor {
+  fit_daily_spending_model(transactions: any[]): Promise<void>;
+  fit_funds_depletion_model(transactions: any[], currentBalance: number): Promise<void>;
+  fit_location_preference_model(transactions: any[]): Promise<void>;
+  predict_funds_depletion(currentBalance: number, date: Date): Promise<any>;
+  predict_weekly_spending(date: Date): Promise<any[]>;
+  analyze_spending_patterns(transactions: any[]): Promise<any>;
+  predict_location_preferences(timeOfDay: string, dayOfWeek: number, date: Date): Promise<any[]>;
+}
+
+// Initialize a singleton instance of the predictor wrapper
+let patternPredictor: SpendingPatternPredictorWrapper | null = null;
 
 interface SpendingPredictionRequest {
   user_id: string;
@@ -20,13 +32,89 @@ interface LocationPredictionRequest {
   transactions?: any[];
 }
 
+// Create a wrapper class that will execute Python code
+class SpendingPatternPredictorWrapper implements SpendingPatternPredictor {
+  private pythonScriptPath: string;
+
+  constructor() {
+    // Path to your Python script
+    this.pythonScriptPath = path.join(__dirname, 'spendingPatternPredictor.py');
+    console.log('Python script path:', this.pythonScriptPath);
+  }
+
+  // Helper method to run Python with data
+  private async runPythonMethod(method: string, args: any[]): Promise<any> {
+    return new Promise((resolve, reject) => {
+      const process = spawn('python', [
+        this.pythonScriptPath,
+        method,
+        JSON.stringify(args)
+      ]);
+
+      let result = '';
+      let error = '';
+
+      process.stdout.on('data', (data) => {
+        result += data.toString();
+      });
+
+      process.stderr.on('data', (data) => {
+        error += data.toString();
+      });
+
+      process.on('close', (code) => {
+        if (code !== 0) {
+          console.error(`Python process exited with code ${code}: ${error}`);
+          reject(new Error(`Python error: ${error}`));
+          return;
+        }
+
+        try {
+          resolve(JSON.parse(result));
+        } catch (e) {
+          reject(new Error(`Failed to parse Python output: ${result}`));
+        }
+      });
+    });
+  }
+
+  // Implement the interface methods using Python calls
+  async fit_daily_spending_model(transactions: any[]): Promise<void> {
+    await this.runPythonMethod('fit_daily_spending_model', [transactions]);
+  }
+
+  async fit_funds_depletion_model(transactions: any[], currentBalance: number): Promise<void> {
+    await this.runPythonMethod('fit_funds_depletion_model', [transactions, currentBalance]);
+  }
+
+  async fit_location_preference_model(transactions: any[]): Promise<void> {
+    await this.runPythonMethod('fit_location_preference_model', [transactions]);
+  }
+
+  async predict_funds_depletion(currentBalance: number, date: Date): Promise<any> {
+    return this.runPythonMethod('predict_funds_depletion', [currentBalance, date.toISOString()]);
+  }
+
+  async predict_weekly_spending(date: Date): Promise<any[]> {
+    return this.runPythonMethod('predict_weekly_spending', [date.toISOString()]);
+  }
+
+  async analyze_spending_patterns(transactions: any[]): Promise<any> {
+    return this.runPythonMethod('analyze_spending_patterns', [transactions]);
+  }
+
+  async predict_location_preferences(timeOfDay: string, dayOfWeek: number, date: Date): Promise<any[]> {
+    return this.runPythonMethod('predict_location_preferences', [timeOfDay, dayOfWeek, date.toISOString()]);
+  }
+}
+
 /**
  * Get or initialize the spending pattern predictor
  */
-const getPredictor = (): SpendingPatternPredictor => {
+const getPredictor = (): SpendingPatternPredictorWrapper => {
   if (!patternPredictor) {
     console.log('Initializing spending pattern predictor...');
-    patternPredictor = new SpendingPatternPredictor();
+    patternPredictor = new SpendingPatternPredictorWrapper();
     console.log('Spending pattern predictor initialized');
   }
   return patternPredictor;
@@ -96,18 +184,18 @@ export const predictSpendingPatterns = async (req: SpendingPredictionRequest) =>
     
     // Train models for this user
     try {
-      predictor.fit_daily_spending_model(userTransactions);
-      predictor.fit_funds_depletion_model(userTransactions, current_balance);
-      predictor.fit_location_preference_model(userTransactions);
+      await predictor.fit_daily_spending_model(userTransactions);
+      await predictor.fit_funds_depletion_model(userTransactions, current_balance);
+      await predictor.fit_location_preference_model(userTransactions);
     } catch (error) {
       console.error(`Error training models for user ${user_id}:`, error);
       // Continue with predictions using fallback methods
     }
     
     // Get predictions
-    const depletion = predictor.predict_funds_depletion(current_balance, predictionDate);
-    const weeklySpending = predictor.predict_weekly_spending(predictionDate);
-    const patterns = predictor.analyze_spending_patterns(userTransactions);
+    const depletion = await predictor.predict_funds_depletion(current_balance, predictionDate);
+    const weeklySpending = await predictor.predict_weekly_spending(predictionDate);
+    const patterns = await predictor.analyze_spending_patterns(userTransactions);
     
     return {
       funds_depletion: depletion,
@@ -156,7 +244,7 @@ export const predictDiningLocations = async (req: LocationPredictionRequest) => 
     
     // Train location model for this user
     try {
-      predictor.fit_location_preference_model(userTransactions);
+      await predictor.fit_location_preference_model(userTransactions);
     } catch (error) {
       console.error(`Error training location model for user ${user_id}:`, error);
       // Return generic recommendations
@@ -171,7 +259,7 @@ export const predictDiningLocations = async (req: LocationPredictionRequest) => 
     }
     
     // Get location predictions
-    const predictions = predictor.predict_location_preferences(time_of_day, predictionDay, predictionDate);
+    const predictions = await predictor.predict_location_preferences(time_of_day, predictionDay, predictionDate);
     
     return {
       preferred_locations: predictions,

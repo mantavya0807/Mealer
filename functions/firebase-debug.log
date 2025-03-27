@@ -3721,3 +3721,81 @@ Issues? Report them at https://github.com/firebase/firebase-tools/issues and att
 [debug] [2025-02-25T08:21:45.361Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=finish"}}
 [debug] [2025-02-25T08:21:45.361Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-api"},"extension":{},"message":"Finishing up request with event=close"}}
 [debug] [2025-02-25T08:21:45.361Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2025-03-27T20:30:22.858Z] ----------------------------------------------------------------------
+[debug] [2025-03-27T20:30:22.861Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Mantavya\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js emulators:start --only functions
+[debug] [2025-03-27T20:30:22.862Z] CLI Version:   13.31.2
+[debug] [2025-03-27T20:30:22.862Z] Platform:      win32
+[debug] [2025-03-27T20:30:22.862Z] Node Version:  v18.18.2
+[debug] [2025-03-27T20:30:22.863Z] Time:          Thu Mar 27 2025 16:30:22 GMT-0400 (Eastern Daylight Time)
+[debug] [2025-03-27T20:30:22.863Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-03-27T20:30:22.867Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2025-03-27T20:30:23.147Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-03-27T20:30:23.147Z] > authorizing via signed-in user (mantavyamahajan@gmail.com)
+[info] i  emulators: Starting emulators: functions {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: functions"}}
+[debug] [2025-03-27T20:30:23.161Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2025-03-27T20:30:23.161Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[debug] [2025-03-27T20:30:23.168Z] [hub] writing locator at C:\Users\Mantavya\AppData\Local\Temp\hub-meal-plan-optimizer.json
+[debug] [2025-03-27T20:30:23.183Z] [functions] Functions Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2025-03-27T20:30:23.184Z] [eventarc] Eventarc Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2025-03-27T20:30:23.184Z] [tasks] Cloud Tasks Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2025-03-27T20:30:23.184Z] late-assigned ports for functions and eventarc emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"functions":[{"address":"127.0.0.1","family":"IPv4","port":5001}],"eventarc":[{"address":"127.0.0.1","family":"IPv4","port":9299}],"tasks":[{"address":"127.0.0.1","family":"IPv4","port":9499}]},"metadata":{"message":"late-assigned ports for functions and eventarc emulators"}}
+[warn] !  functions: The following emulators are not running, calls to these services from the Functions emulator will affect production: apphosting, auth, firestore, database, hosting, pubsub, storage, dataconnect {"metadata":{"emulator":{"name":"functions"},"message":"The following emulators are not running, calls to these services from the Functions emulator will affect production: \u001b[1mapphosting, auth, firestore, database, hosting, pubsub, storage, dataconnect\u001b[22m"}}
+[debug] [2025-03-27T20:30:23.188Z] defaultcredentials: writing to file C:\Users\Mantavya\AppData\Roaming\firebase\mantavyamahajan_gmail_com_application_default_credentials.json
+[debug] [2025-03-27T20:30:23.200Z] Setting GAC to C:\Users\Mantavya\AppData\Roaming\firebase\mantavyamahajan_gmail_com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to C:\\Users\\Mantavya\\AppData\\Roaming\\firebase\\mantavyamahajan_gmail_com_application_default_credentials.json"}}
+[debug] [2025-03-27T20:30:23.201Z] Checked if tokens are valid: false, expires at: 1741645843021
+[debug] [2025-03-27T20:30:23.201Z] Checked if tokens are valid: false, expires at: 1741645843021
+[debug] [2025-03-27T20:30:23.202Z] > refreshing access token with scopes: []
+[debug] [2025-03-27T20:30:23.203Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-03-27T20:30:23.203Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-03-27T20:30:23.341Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2025-03-27T20:30:23.341Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2025-03-27T20:30:23.402Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-03-27T20:30:23.402Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-03-27T20:30:23.408Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/meal-plan-optimizer/adminSdkConfig [none]
+[debug] [2025-03-27T20:30:23.833Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/meal-plan-optimizer/adminSdkConfig 200
+[debug] [2025-03-27T20:30:23.833Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/meal-plan-optimizer/adminSdkConfig {"projectId":"meal-plan-optimizer","databaseURL":"https://meal-plan-optimizer-default-rtdb.firebaseio.com","storageBucket":"meal-plan-optimizer.firebasestorage.app"}
+[info] i  functions: Watching "D:\Mealer\Mealer\functions" for Cloud Functions... {"metadata":{"emulator":{"name":"functions"},"message":"Watching \"D:\\Mealer\\Mealer\\functions\" for Cloud Functions..."}}
+[debug] [2025-03-27T20:30:23.882Z] Validating nodejs source
+[warn] !  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[debug] [2025-03-27T20:30:25.607Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "build": "tsc && copy .env lib\\.env",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "dependencies": {
+    "@google-cloud/firestore": "^7.11.0",
+    "cors": "^2.8.5",
+    "csv-stringify": "^6.5.2",
+    "dotenv": "^16.4.7",
+    "express": "^4.18.2",
+    "firebase": "^11.3.1",
+    "firebase-admin": "^11.8.0",
+    "firebase-functions": "^6.1.1",
+    "openai": "^4.90.0",
+    "puppeteer": "^21.5.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.0",
+    "firebase-functions-test": "^3.1.0",
+    "typescript": "^5.0.0"
+  },
+  "private": true
+}
+[debug] [2025-03-27T20:30:25.607Z] Building nodejs source
+[debug] [2025-03-27T20:30:25.608Z] Failed to find version of module node: reached end of search path D:\Mealer\Mealer\functions\node_modules
+[info] +  functions: Using node@18 from host. 
+[info] i  functions: Loaded environment variables from .env. 
+[debug] [2025-03-27T20:30:25.612Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-03-27T20:30:25.620Z] Found firebase-functions binary at 'D:\Mealer\Mealer\functions\node_modules\.bin\firebase-functions'

@@ -1,9 +1,86 @@
 // functions/src/ml/mealRecommendationService.ts
 import { getFirestore } from 'firebase-admin/firestore';
-import { MealRecommendationSystem } from './mealRecommendationSystem';
+import { spawn } from 'child_process';
+import * as path from 'path';
+
+// Define an interface for the MealRecommendationSystem
+interface MealRecommendationSystem {
+  fit(): void;
+  update_user_profile(userId: string, transactions: any[], preferences: any): void;
+  batch_recommendations_for_day(userId: string, date: Date, dietaryPreferences?: string[], discountOnly?: boolean): any;
+}
+
+// Create a wrapper class for the Python implementation
+class MealRecommendationSystemWrapper implements MealRecommendationSystem {
+  private pythonScriptPath: string;
+
+  constructor() {
+    // Path to your Python script
+    this.pythonScriptPath = path.join(__dirname, 'mealRecommendationSystem.py');
+    console.log('Python script path:', this.pythonScriptPath);
+  }
+
+  // Helper method to run Python with data
+  private async runPythonMethod(method: string, args: any[]): Promise<any> {
+    return new Promise((resolve, reject) => {
+      const process = spawn('python', [
+        this.pythonScriptPath,
+        method,
+        JSON.stringify(args)
+      ]);
+
+      let result = '';
+      let error = '';
+
+      process.stdout.on('data', (data) => {
+        result += data.toString();
+      });
+
+      process.stderr.on('data', (data) => {
+        error += data.toString();
+      });
+
+      process.on('close', (code) => {
+        if (code !== 0) {
+          console.error(`Python process exited with code ${code}: ${error}`);
+          reject(new Error(`Python error: ${error}`));
+          return;
+        }
+
+        try {
+          resolve(JSON.parse(result));
+        } catch (e) {
+          reject(new Error(`Failed to parse Python output: ${result}`));
+        }
+      });
+    });
+  }
+
+  async fit(): Promise<void> {
+    await this.runPythonMethod('fit', []);
+  }
+
+  async update_user_profile(userId: string, transactions: any[], preferences: any): Promise<void> {
+    await this.runPythonMethod('update_user_profile', [userId, transactions, preferences]);
+  }
+
+  async batch_recommendations_for_day(
+    userId: string, 
+    date: Date, 
+    dietaryPreferences?: string[], 
+    discountOnly?: boolean
+  ): Promise<any> {
+    return this.runPythonMethod('batch_recommendations_for_day', [
+      userId, 
+      date.toISOString(), 
+      dietaryPreferences || null, 
+      !!discountOnly
+    ]);
+  }
+}
 
 // Initialize the recommendation system as a singleton
-let recommendationSystem: MealRecommendationSystem | null = null;
+let recommendationSystem: MealRecommendationSystemWrapper | null = null;
 
 interface Transaction {
   location: string;
@@ -28,10 +105,10 @@ interface MealRecommendationRequest {
 /**
  * Get or initialize the meal recommendation system
  */
-const getRecommendationSystem = (): MealRecommendationSystem => {
+const getRecommendationSystem = (): MealRecommendationSystemWrapper => {
   if (!recommendationSystem) {
     console.log('Initializing meal recommendation system...');
-    recommendationSystem = new MealRecommendationSystem();
+    recommendationSystem = new MealRecommendationSystemWrapper();
     recommendationSystem.fit();
     console.log('Meal recommendation system initialized');
   }
@@ -102,11 +179,11 @@ export const getMealRecommendations = async (req: MealRecommendationRequest) => 
     }
     
     // Update the user profile in the recommendation system
-    recommender.update_user_profile(user_id, userTransactions, userPreferences);
+    await recommender.update_user_profile(user_id, userTransactions, userPreferences);
     
     // Generate recommendations for the day
     const recommendationDate = date ? new Date(date) : new Date();
-    const recommendations = recommender.batch_recommendations_for_day(
+    const recommendations = await recommender.batch_recommendations_for_day(
       user_id,
       recommendationDate,
       userPreferences?.dietary_preferences,
