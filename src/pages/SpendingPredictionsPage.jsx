@@ -24,7 +24,7 @@ export default function SpendingPredictionsPage() {
         setLoading(true);
         // Fetch all searches first
         const response = await fetch(
-          'http://127.0.0.1:5001/meal-plan-optimizer/us-central1/api/searches'
+          'http://127.0.0.1:5000/api/searches'
         );
     
         if (!response.ok) {

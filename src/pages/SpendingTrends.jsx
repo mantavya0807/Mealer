@@ -717,7 +717,7 @@ const filteredTransactions = useMemo(() => {
       try {
         setLoading(true);
         // Fetch all searches first
-        const response = await fetch('http://127.0.0.1:5001/meal-plan-optimizer/us-central1/api/searches');
+        const response = await fetch('http://127.0.0.1:5000/api/searches');
         if (!response.ok) {
           const errorData = await response.json().catch(() => ({}));
           throw new Error(errorData.error || `Request failed with status ${response.status}`);
@@ -772,7 +772,7 @@ useEffect(() => {
         
         // Get the most recent search for this user
         const searchResponse = await fetch(
-          'http://127.0.0.1:5001/meal-plan-optimizer/us-central1/api/searches'
+          'http://127.0.0.1:5000/api/searches'
         );
         
         if (!searchResponse.ok) {
@@ -790,7 +790,7 @@ useEffect(() => {
           
           // Fetch the specific search details to get transactions
           const searchDetailsResponse = await fetch(
-            `http://127.0.0.1:5001/meal-plan-optimizer/us-central1/api/searches/${mostRecentSearch.id}`
+            `http://127.0.0.1:5000/api/searches/${mostRecentSearch.id}`
           );
           
           if (!searchDetailsResponse.ok) {

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, Coffee, MapPin, Utensils, Moon, Clock, DollarSign, Filter, RefreshCw } from 'lucide-react';
+import { MLService } from '../../services/MLServices';
 
 // Default export
 export default function MealRecommendations({ 
@@ -37,7 +38,7 @@ export default function MealRecommendations({
       }
 
       // In a real implementation, this would call your backend API
-      const response = await fetch('http://127.0.0.1:5001/meal-plan-optimizer/us-central1/api/ml/meal-recommendations', {
+      const response = await fetch('http://127.0.0.1:5000/api/ml/meal-recommendations', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -63,82 +64,8 @@ export default function MealRecommendations({
     } catch (err) {
       console.error('Error fetching recommendations:', err);
       setError(err.message);
-      
-      // For demo purposes only - fallback to sample data
-      // Remove this in production
-      setRecommendations({
-        breakfast: [
-          {
-            name: "Findlay Commons",
-            area: "East",
-            category: "Dining Hall",
-            meal_plan_discount: true,
-            dietary_options: ["Vegetarian", "Vegan", "Gluten-Free"],
-            avg_wait_time: 10,
-            explanation: "Offers 65% meal plan discount. Good breakfast options. Not currently busy."
-          },
-          {
-            name: "The Edge Coffee Bar",
-            area: "West",
-            category: "Coffee Shop",
-            meal_plan_discount: false,
-            dietary_options: ["Vegetarian", "Vegan"],
-            avg_wait_time: 8,
-            explanation: "Short wait times. Good breakfast options. Not currently busy."
-          }
-        ],
-        lunch: [
-          {
-            name: "North Food District",
-            area: "North",
-            category: "Dining Hall",
-            meal_plan_discount: true,
-            dietary_options: ["Vegetarian", "Vegan", "Gluten-Free", "Halal"],
-            avg_wait_time: 10,
-            explanation: "Offers 65% meal plan discount. Popular lunch spot. Currently busy."
-          },
-          {
-            name: "Redifer Commons",
-            area: "South",
-            category: "Dining Hall",
-            meal_plan_discount: true,
-            dietary_options: ["Vegetarian", "Vegan", "Gluten-Free"],
-            avg_wait_time: 15,
-            explanation: "Offers 65% meal plan discount. Wide variety of food options. Popular lunch spot."
-          }
-        ],
-        dinner: [
-          {
-            name: "Waring Commons",
-            area: "West",
-            category: "Dining Hall",
-            meal_plan_discount: true,
-            dietary_options: ["Vegetarian", "Vegan", "Gluten-Free"],
-            avg_wait_time: 12,
-            explanation: "Offers 65% meal plan discount. Great dinner selection. Not currently busy."
-          },
-          {
-            name: "Pollock Commons",
-            area: "Pollock",
-            category: "Dining Hall",
-            meal_plan_discount: true,
-            dietary_options: ["Vegetarian", "Vegan", "Gluten-Free"],
-            avg_wait_time: 12,
-            explanation: "Offers 65% meal plan discount. Great dinner selection. Not currently busy."
-          }
-        ],
-        late_night: [
-          {
-            name: "HUB Dining",
-            area: "Central",
-            category: "Food Court",
-            meal_plan_discount: false,
-            dietary_options: ["Vegetarian", "Vegan", "Gluten-Free"],
-            avg_wait_time: 15,
-            explanation: "Wide variety of food options. Open late. Not currently busy."
-          }
-        ]
-      });
+      const localRec = MLService.generateLocalRecommendations(transactions, userPreferences, discountOnly);
+      setRecommendations(localRec);
     } finally {
       setLoading(false);
       setRefreshing(false);
