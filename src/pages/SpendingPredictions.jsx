@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { MLService } from '../services/MLServices.ts';
+// Import the JavaScript version of the ML service
+import { MLService } from '../services/MLServices';
 import { 
     Calendar,
     AlertTriangle,

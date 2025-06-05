@@ -13,23 +13,20 @@ A web application that helps Penn State students analyze and optimize their camp
 ## Tech Stack
 
 ### Frontend
-- React with TypeScript
+- React
 - Tailwind CSS for styling
 - Recharts for data visualization
 - Firebase Authentication
 
 ### Backend
-- Firebase Cloud Functions
-- Firestore Database
-- Node.js with TypeScript
-- Puppeteer for automated data collection
+- Express.js server for scraping and ML endpoints
+- Node.js with Puppeteer for automated data collection
 
 ## Getting Started
 
 ### Prerequisites
 - Node.js (v18 or higher)
 - npm or yarn
-- Firebase CLI
 - A Penn State account
 
 ### Installation
@@ -43,18 +40,11 @@ cd meal-plan-optimizer
 2. Install dependencies
 ```bash
 npm install
-cd functions
-npm install
 ```
 
-3. Set up Firebase
-```bash
-npm install -g firebase-tools
-firebase login
-firebase init
-```
+3. (Optional) Set up Firebase authentication and Firestore by creating a project in the Firebase console.
 
-4. Create a `.env` file in the root directory with your Firebase config:
+4. Create a `.env` file in the root directory with your Firebase config if using Firebase:
 ```
 REACT_APP_FIREBASE_API_KEY=your_api_key
 REACT_APP_FIREBASE_AUTH_DOMAIN=your_auth_domain
@@ -69,10 +59,9 @@ REACT_APP_FIREBASE_APP_ID=your_app_id
 npm start
 ```
 
-6. In a separate terminal, start the Firebase emulators
+6. In a separate terminal, start the backend server
 ```bash
-cd functions
-npm run serve
+npm run server
 ```
 
 ## Usage
@@ -96,11 +85,9 @@ npm run serve
 
 - All user credentials are securely handled and never stored
 - Multi-factor authentication is required for data access
-- Firebase security rules protect user data
 - All API requests are authenticated and rate-limited
 
 
-- Firebase team for their excellent documentation
 - The React and TypeScript communities
 
 ## Support

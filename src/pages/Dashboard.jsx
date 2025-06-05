@@ -121,7 +121,7 @@ export default function Dashboard() {
         password: '[REDACTED]'
       });
 
-      const response = await fetch('http://127.0.0.1:5001/meal-plan-optimizer/us-central1/api/login', {
+      const response = await fetch('http://127.0.0.1:5000/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

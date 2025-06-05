@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { MLService } from '../../services/MLServices';
 import {
   BarChart, Bar, LineChart, Line, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
   ResponsiveContainer, PieChart, Pie
@@ -60,208 +61,21 @@ export default function SpendingPredictions({
         throw new Error('User not authenticated');
       }
 
-      // API call to backend
-      const response = await fetch(
-        'http://127.0.0.1:5001/meal-plan-optimizer/us-central1/api/ml/spending-predictions',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            user_id: user.email,
-            current_balance: currentBalance,
-            transactions: transactions.length > 0 ? transactions : undefined
-          }),
-        }
+      // Use ML service helper which falls back to a local algorithm
+      const data = await MLService.getPredictions(
+        transactions,
+        currentBalance,
+        mealPlanType
       );
 
-      if (!response.ok) {
-        throw new Error('Failed to fetch predictions');
-      }
-
-      const data = await response.json();
       setPredictions(data);
     } catch (err) {
       console.error('Error fetching predictions:', err);
       setError(err.message);
-      
-      // Fallback demo data for development
-      setPredictions({
-        funds_depletion: {
-          current_balance: currentBalance,
-          days_to_depletion: 45,
-          depletion_date: '2025-04-15',
-          risk_level: 'MEDIUM',
-          daily_budget: 10.25,
-          avg_daily_spending: 12.50,
-          semester_end_date: '2025-05-15',
-          days_to_semester_end: 75
-        },
-        weekly_spending: [
-          {
-            date: '2025-02-25',
-            day_of_week: 1,
-            day_name: 'Tuesday',
-            predicted_spending: {
-              breakfast: 6.75,
-              lunch: 10.25,
-              afternoon: 3.50,
-              dinner: 12.30,
-              latenight: 0
-            },
-            total_predicted: 32.80
-          },
-          {
-            date: '2025-02-26',
-            day_of_week: 2,
-            day_name: 'Wednesday',
-            predicted_spending: {
-              breakfast: 5.50,
-              lunch: 11.25,
-              afternoon: 2.75,
-              dinner: 14.25,
-              latenight: 0
-            },
-            total_predicted: 33.75
-          },
-          {
-            date: '2025-02-27',
-            day_of_week: 3,
-            day_name: 'Thursday',
-            predicted_spending: {
-              breakfast: 6.25,
-              lunch: 9.75,
-              afternoon: 5.25,
-              dinner: 13.50,
-              latenight: 6.25
-            },
-            total_predicted: 41.00
-          },
-          {
-            date: '2025-02-28',
-            day_of_week: 4,
-            day_name: 'Friday',
-            predicted_spending: {
-              breakfast: 4.50,
-              lunch: 12.50,
-              afternoon: 0,
-              dinner: 18.25,
-              latenight: 8.50
-            },
-            total_predicted: 43.75
-          },
-          {
-            date: '2025-03-01',
-            day_of_week: 5,
-            day_name: 'Saturday',
-            predicted_spending: {
-              breakfast: 7.75,
-              lunch: 14.25,
-              afternoon: 6.50,
-              dinner: 16.25,
-              latenight: 9.75
-            },
-            total_predicted: 54.50
-          },
-          {
-            date: '2025-03-02',
-            day_of_week: 6,
-            day_name: 'Sunday',
-            predicted_spending: {
-              breakfast: 9.25,
-              lunch: 13.50,
-              afternoon: 4.25,
-              dinner: 12.75,
-              latenight: 0
-            },
-            total_predicted: 39.75
-          },
-          {
-            date: '2025-03-03',
-            day_of_week: 0,
-            day_name: 'Monday',
-            predicted_spending: {
-              breakfast: 6.25,
-              lunch: 10.75,
-              afternoon: 3.25,
-              dinner: 11.50,
-              latenight: 0
-            },
-            total_predicted: 31.75
-          }
-        ],
-        spending_patterns: {
-          summary: {
-            total_spending: 1247.85,
-            average_transaction: 12.35,
-            max_transaction: 38.50,
-            transaction_count: 101
-          },
-          day_of_week: [
-            { day: 'Monday', total_spending: 155.75, average_transaction: 11.98, transaction_count: 13 },
-            { day: 'Tuesday', total_spending: 165.20, average_transaction: 11.80, transaction_count: 14 },
-            { day: 'Wednesday', total_spending: 172.35, average_transaction: 12.31, transaction_count: 14 },
-            { day: 'Thursday', total_spending: 189.50, average_transaction: 12.63, transaction_count: 15 },
-            { day: 'Friday', total_spending: 225.40, average_transaction: 13.25, transaction_count: 17 },
-            { day: 'Saturday', total_spending: 198.75, average_transaction: 13.25, transaction_count: 15 },
-            { day: 'Sunday', total_spending: 140.90, average_transaction: 10.84, transaction_count: 13 }
-          ],
-          highest_spending_day: 'Friday',
-          lowest_spending_day: 'Sunday',
-          meal_period: [
-            { period: 'breakfast', total_spending: 210.50, average_transaction: 8.42, transaction_count: 25 },
-            { period: 'lunch', total_spending: 356.75, average_transaction: 12.33, transaction_count: 29 },
-            { period: 'afternoon', total_spending: 124.60, average_transaction: 8.89, transaction_count: 14 },
-            { period: 'dinner', total_spending: 420.50, average_transaction: 15.76, transaction_count: 26 },
-            { period: 'latenight', total_spending: 135.50, average_transaction: 19.36, transaction_count: 7 }
-          ],
-          locations: [
-            { location: 'Findlay Commons', total_spending: 325.75, average_transaction: 13.57, transaction_count: 24 },
-            { location: 'HUB Dining', total_spending: 245.50, average_transaction: 12.28, transaction_count: 20 },
-            { location: 'Redifer Commons', total_spending: 215.30, average_transaction: 13.45, transaction_count: 16 },
-            { location: 'Starbucks HUB', total_spending: 115.60, average_transaction: 8.25, transaction_count: 14 },
-            { location: 'North Food District', total_spending: 110.75, average_transaction: 13.84, transaction_count: 8 },
-            { location: 'Edge Coffee Bar', total_spending: 87.25, average_transaction: 7.93, transaction_count: 11 },
-            { location: 'Waring Commons', total_spending: 82.50, average_transaction: 13.75, transaction_count: 6 },
-            { location: 'Pollock Commons', total_spending: 65.20, average_transaction: 13.04, transaction_count: 5 }
-          ],
-          top_locations: [
-            { location: 'Findlay Commons', total_spending: 325.75, average_transaction: 13.57, transaction_count: 24 },
-            { location: 'HUB Dining', total_spending: 245.50, average_transaction: 12.28, transaction_count: 20 },
-            { location: 'Redifer Commons', total_spending: 215.30, average_transaction: 13.45, transaction_count: 16 }
-          ],
-          meal_plan_efficiency: {
-            commons_spending: 799.50,
-            non_commons_spending: 448.35,
-            commons_percentage: 64.07,
-            potential_savings: 291.43,
-            rating: 'Good'
-          },
-          recommendations: [
-            {
-              type: 'time_pattern',
-              title: 'High Late Night Spending',
-              description: 'You spend a significant portion of your meal plan during late night hours. Late night options often have fewer choices and may be less cost-effective.'
-            },
-            {
-              type: 'day_pattern',
-              title: 'High Friday Spending',
-              description: 'You spend 18% of your weekly meal plan on Fridays. Try to distribute your spending more evenly throughout the week.'
-            },
-            {
-              type: 'general',
-              title: 'Maximize Dining Commons Usage',
-              description: 'Always prioritize dining commons (Findlay, Waring, Redifer, North, Pollock) to receive the 65% meal plan discount.'
-            },
-            {
-              type: 'general',
-              title: 'Use LionCash for Non-Discounted Locations',
-              description: 'For HUB dining and markets, consider using LionCash to get the 10% discount instead of your meal plan which receives no discount at these locations.'
-            }
-          ]
-        }
-      });
+      const fallback = MLService.generateLocalPredictions(transactions, currentBalance);
+      if (fallback) {
+        setPredictions(fallback);
+      }
     } finally {
       setLoading(false);
       setRefreshing(false);

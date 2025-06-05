@@ -15,7 +15,7 @@ export default function PastSearches() {
     try {
       // Don't need to check auth.currentUser.email since we want all searches
       const response = await fetch(
-        'http://127.0.0.1:5001/meal-plan-optimizer/us-central1/api/searches'
+        'http://127.0.0.1:5000/api/searches'
       );
       
       if (!response.ok) {

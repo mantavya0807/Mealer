@@ -44,7 +44,7 @@ export default function MealPlanAssistant({ className = '' }) {
 
     try {
       // Send query to backend
-      const response = await fetch('http://127.0.0.1:5001/meal-plan-optimizer/us-central1/api/ml/assistant', {
+      const response = await fetch('http://127.0.0.1:5000/api/ml/assistant', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
